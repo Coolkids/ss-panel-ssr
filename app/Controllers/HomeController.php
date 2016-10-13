@@ -63,11 +63,11 @@ class HomeController extends BaseController
         ];
         return $this->echoJson($response, $res);
     }
-    public function getcode($response, $args)
+    public function getcode()
     {
         $msg = DbConfig::get('home-code');
         $codes = InviteCode::where('user_id', '=', '0')->take(10)->get();
-        return $this->echoJson($response,(json_encode($codes)));
+        return $this->display(json_encode($codes));
     }
 
 }
