@@ -33,6 +33,7 @@ $app->add(new WhoopsMiddleware);
 // Home
 $app->get('/', 'App\Controllers\HomeController:index');
 $app->get('/code', 'App\Controllers\HomeController:code');
+$app->get('/getcode', 'App\Controllers\HomeController:getcode');
 $app->get('/tos', 'App\Controllers\HomeController:tos');
 $app->get('/debug', 'App\Controllers\HomeController:debug');
 $app->post('/debug', 'App\Controllers\HomeController:postDebug');
