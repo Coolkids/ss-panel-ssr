@@ -43,6 +43,11 @@ module.exports = {
 				loader:'vue',
 			},
 			{
+				test:/\.js$/,
+				exclude: /node_modules|vue\/src|vue-router\/|vue-loader\/|vue-hot-reload-api\//,
+				loader:'babel',
+			},
+			{
 				test: /\.scss$/,
 				loader: ExtractTextPlugin.extract("style-loader",'css-loader','sass-loader')
 			},

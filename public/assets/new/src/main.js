@@ -39,7 +39,6 @@ route.redirect({
 
 route.afterEach(function(transition){
 	console.log("成功浏览到：" + transition.to.path);
-	show = false;
 })
 
 route.start(app,"#app");

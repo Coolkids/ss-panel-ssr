@@ -30,8 +30,34 @@ export default{
 }
 </script>
 
-<style>
-ul{
-	list-style-type: none;
+<style lang="sass">
+.bor-bot{
+	position: relative;
+	&:after{
+		content:"";
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		left: -3%;
+		padding: 0 3%;
+		height: 0.0625rem;
+		background-color: rgba(0,0,0,.12);
+		transform:scale(1,-1);
+	}
+}
+.flex{
+	display: flex;
+	div{
+		flex: 1;
+	}
+}
+@media only screen and (max-width: 750px){
+	.home-row{
+		width: 90%;
+		div[class*="home-"]{
+			overflow-y:scroll;
+			overflow-scrolling: touch;
+		}
+	}
 }
 </style>

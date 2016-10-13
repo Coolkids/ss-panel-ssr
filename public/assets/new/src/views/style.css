@@ -3,5 +3,48 @@ body,ul{margin:0;padding:0;}
 .block{display: block}
 .height{height: 100%;}
 .width{width: 100%;}
+.ul{list-style: none;overflow: hidden;}
+.fl-li{float: left;}
+.pat-ten{padding-top:.625rem;}
+.pad-ten{padding-bottom: .625rem;}
+.padt-ten{padding:.625rem 0;}
 a{text-decoration: none;}
+.hid{overflow: hidden}
 .center{text-align: center}
+.ten{font-size: .625rem;}
+.twe{font-size: .75rem;}
+.four{font-size: .875rem;}
+.six{font-size: 1.0rem;}
+.te-right{text-align: right;}
+.eight{font-size:1.125rem;}
+.red{color: #ff4081}
+.down-shadow{box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);}
+.btn-sml{padding:.5rem .375rem;font-size: .8125rem;color:#fff;display: block;border-radius: .125rem;}
+.blue{background-color: #3f51b5}
+.green{background-color: #4caf50;}
+.orange{background-color: #ff9800;}
+.redbg{background-color:#f44336;}
+.col-12 {width: 100%;position: relative;}
+.col-11 {width: 91.66666667%;}
+.col-10 {width: 83.33333333%;}
+.col-9 {width: 75%;}
+.col-8 {width: 66.66666667%;}
+.col-7 {width: 58.33333333%;}
+.col-6 {width: 50%;}
+.col-5 {width: 41.66666667%;}
+.col-4 {width: 33.33333333%;}
+.col-3 {width: 25%;}
+.col-2 {width: 16.66666667%;}
+.col-1 {width: 8.33333333%;}
+.text-hidden{text-overflow: ellipsis;overflow: hidden;}
+.font-9a{color: #9a9a9a;}
+
+@media only screen and (max-width: 750px){
+	.home-row{
+		width: 90%;
+		div[class*="home-"]{
+			overflow-y:scroll;
+			overflow-scrolling: touch;
+		}
+	}
+}
