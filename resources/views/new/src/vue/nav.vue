@@ -15,17 +15,11 @@
 
 export default{
 	name : 'Navbar',
-
+	
 }
 </script>
 
 <style lang="sass">
-	.nav-view{
-		position: fixed;
-		top: 0;
-		left: 0;
-	}
-	.nav-view li{
-		float: left;
-	}
+//导航栏
+
 </style>

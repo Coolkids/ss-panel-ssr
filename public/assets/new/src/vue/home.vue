@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<div>I am {{ name }}</div>
+		<div class="width home center">
+			I am {{ name }}
+		</div>
 	</div>
 </template>
 
@@ -18,11 +20,14 @@ export default{
 	created(){
 		this.$loadingRouteData = false;
 		console.log(this.name);
-	},
+	}
 
 }
 </script>
 
-<style>
-
+<style lang="sass">
+.home{
+	height: 200px;
+	background: purple;
+}
 </style>

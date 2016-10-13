@@ -2,6 +2,7 @@ var vue = require("vue");
 var router = require("vue-router");
 var resource = require("vue-resource");
 require('./views/style.css');
+require('./views/sass.scss');
 
 var home  = require('./vue/home.vue');
 var about = require('./vue/about.vue');

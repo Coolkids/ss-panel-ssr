@@ -1,1 +1,7 @@
-body{margin:0;padding:0;}
+html{font-size: 16px;font-family: "Microsoft YaHei"}
+body,ul{margin:0;padding:0;}
+.block{display: block}
+.height{height: 100%;}
+.width{width: 100%;}
+a{text-decoration: none;}
+.center{text-align: center}

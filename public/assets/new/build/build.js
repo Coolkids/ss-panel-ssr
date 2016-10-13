@@ -1,4 +1,4 @@
-webpackJsonp([0,3],[
+webpackJsonp([0,1],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -12,35 +12,45 @@ webpackJsonp([0,3],[
 	var vue = __webpack_require__(2);
 	var router = __webpack_require__(4);
 	var resource = __webpack_require__(5);
-	__webpack_require__(6);
+
+	var home  = __webpack_require__(6);
+	var about = __webpack_require__(10);
+	var app = __webpack_require__(14);
+	var sign = __webpack_require__(22)
+	__webpack_require__(26);
+	__webpack_require__(27);
 
 	vue.use(router);
 	vue.use(resource);
 
-	var app = vue.extend({});
-
 	var route = new router({
-		hashbang : true,
+		hashbang : false,
 		history : false,
 		saveScrollPosition: true,
-		transitionOnLoad : true
+		transitionOnLoad : true,
+		transition:true,
+		transitionMode: 'out-in'
 	});
-
+	route.mode = "html5";
 	route.map({
-		'/':{
-			component: function(resolve){
-				__webpack_require__.e/* require */(1, function(__webpack_require__) { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(7)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this))
-			}
+		'/home':{
+			component: home
 		},
 		'/about':{
-			component: function(resolve){
-				__webpack_require__.e/* require */(2, function(__webpack_require__) { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(11)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this))
-			}	
+			component: about
+		},
+		'/sign':{
+			component: sign
 		}
 	});
 
+	route.redirect({
+	    '*': '/home'
+	})
+
 	route.afterEach(function(transition){
-		console.log("成功浏览到：" + transition.to.path)
+		console.log("成功浏览到：" + transition.to.path);
+		show = false;
 	})
 
 	route.start(app,"#app");
@@ -14714,6 +14724,532 @@ webpackJsonp([0,3],[
 
 /***/ },
 /* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
+	__webpack_require__(7)
+	__vue_script__ = __webpack_require__(8)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] src\\vue\\home.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(9)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
+	if (__vue_template__) {
+	__vue_options__.template = __vue_template__
+	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-13f8db7f/home.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// <template>
+	// 	<div>
+	// 		<div class="width home center">
+	// 			I am {{ name }}
+	// 		</div>
+	// 	</div>
+	// </template>
+	//
+	//
+	// <script>
+	//js
+	exports.default = {
+		name: 'home',
+
+		data: function data() {
+			return {
+				name: 'home'
+			};
+		},
+		created: function created() {
+			this.$loadingRouteData = false;
+			console.log(this.name);
+		}
+	};
+	// </script>
+	//
+	// <style lang="sass">
+	// .home{
+	// 	height: 200px;
+	// 	background: purple;
+	// }
+	// </style>
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div>\n\t<div class=\"width home center\">\n\t\tI am {{ name }}\n\t</div>\n</div>\n";
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
+	__webpack_require__(11)
+	__vue_script__ = __webpack_require__(12)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] src\\vue\\about.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(13)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
+	if (__vue_template__) {
+	__vue_options__.template = __vue_template__
+	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-c0b005c6/about.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// <template>
+	// 	<div class="about center">I am {{ name }}</div>
+	// </template>
+	//
+	//
+	// <script>
+	//js
+
+	exports.default = {
+		name: 'about',
+
+		data: function data() {
+			return {
+				name: 'about'
+			};
+		}
+	};
+	// </script>
+	//
+	//
+	// <style>
+	// .about{
+	// 	background-color: green;
+	// 	height: 12.5rem;
+	// }
+	// </style>
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"about center\">I am {{ name }}</div>\n";
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
+	__webpack_require__(15)
+	__vue_script__ = __webpack_require__(16)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] src\\vue\\app.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(21)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
+	if (__vue_template__) {
+	__vue_options__.template = __vue_template__
+	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-45cde7b1/app.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 15 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _nav = __webpack_require__(17);
+
+	var _nav2 = _interopRequireDefault(_nav);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//js
+	exports.default = {
+		name: 'app',
+
+		components: [_nav2.default],
+
+		data: function data() {
+			return {
+				name: 'app'
+			};
+		},
+		created: function created() {
+			this.$loadingRouteData = false;
+			console.log(this.name);
+		}
+	};
+	// </script>
+	//
+	// <style>
+	// ul{
+	// 	list-style-type: none;
+	// }
+	// </style>
+	// <template>
+	// 	<div>
+	// 		<Navbar></Navbar>
+	// 		<router-view
+	// 		transition="route"
+	// 		transition-mode="out-in">	
+	// 		</router-view>
+	// 	</div>
+	// </template>
+	//
+	//
+	// <script>
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
+	__webpack_require__(18)
+	__vue_script__ = __webpack_require__(19)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] src\\vue\\nav.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(20)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
+	if (__vue_template__) {
+	__vue_options__.template = __vue_template__
+	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-478a749a/nav.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 19 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// <template>
+	// 	<div class="nav-view">
+	// 		<div class="nav-btn">
+	// 			<a href="javascript:void(0)" class="nav-link" @click="show = !show"></a>
+	// 		</div>
+	// 	</div>
+	// 	<div class="nav-content height" :class="{'nav-show':show,'nav-hide':!show}" @click="show = false">
+	// 		<div class="nav-list height">
+	// 			<ul>	
+	// 				<li v-link="{path:'/home'}">
+	// 					<a href="">首页</a>
+	// 				</li>
+	// 				<li v-link="{path:'/sign'}">
+	// 					<a href="">注册</a>
+	// 				</li>
+	// 				<li v-link="{path:'/about'}">
+	// 					<a href="">关于</a>
+	// 				</li>
+	// 			</ul>
+	// 		</div>
+	// 		<div class="nav-mask">
+	//
+	// 		</div>
+	// 	</div>
+	// </template>
+	//
+	// <script>
+
+	exports.default = {
+		name: 'Navbar',
+
+		data: function data() {
+			return {
+				show: false
+			};
+		},
+
+		methods: {},
+		created: function created() {}
+	};
+	// </script>
+	//
+	// <style lang="sass">
+	// .nav-view,.nav-content{
+	// 	position: fixed;
+	// 	top: 0;
+	// 	left: 0;
+	// 	width: 100%;
+	// 	z-index: 1;
+	// }
+	// .nav-btn{
+	// 	width: 1.875rem;
+	// 	height: 1.0rem;
+	// 	position: absolute;
+	// 	top: .625rem;
+	// 	left: .625rem;
+	// 	.nav-link{
+	// 		display: block;
+	// 		height: 100%;
+	// 		border-top:0.125rem solid #fff;
+	// 		border-bottom:0.125rem solid #fff;
+	// 		&:after{
+	// 			position: absolute;
+	// 			content:"";
+	// 			width: 100%;
+	// 			height: .125rem;
+	// 			background-color: #fff;
+	// 			top:.5rem;
+	// 		}
+	// 	}
+	// }
+	// .nav-content{
+	// 	transition: all .2s ease;
+	// 	overflow: hidden;
+	// 	background-color:rgba(#000, .2)
+	// }
+	// .nav-show{
+	// 	transform: translate(0,0)
+	// }
+	// .nav-hide{
+	// 	transform: translate(-100%,0)
+	//
+	// }
+	// .nav-list{
+	// 	float:left;
+	// 	width: 250px;
+	// 	background-color:#fff;
+	// 	ul{
+	// 		margin-top: 10%;
+	// 	}
+	// 	li{
+	// 		width: 100%;
+	// 		padding: 5px	 0;
+	// 		text-align: center;
+	// 		&:hover{
+	// 			background-color:#ccc;
+	// 			transition: all .2s ease;
+	// 		}
+	// 		a{
+	// 			color: #666;
+	// 		}
+	// 	}
+	// }
+	// </style>
+
+/***/ },
+/* 20 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"nav-view\">\n\t<div class=\"nav-btn\">\n\t\t<a href=\"javascript:void(0)\" class=\"nav-link\" @click=\"show = !show\"></a>\n\t</div>\n</div>\n<div class=\"nav-content height\" :class=\"{'nav-show':show,'nav-hide':!show}\" @click=\"show = false\">\n\t<div class=\"nav-list height\">\n\t\t<ul>\t\n\t\t\t<li v-link=\"{path:'/home'}\">\n\t\t\t\t<a href=\"\">首页</a>\n\t\t\t</li>\n\t\t\t<li v-link=\"{path:'/sign'}\">\n\t\t\t\t<a href=\"\">注册</a>\n\t\t\t</li>\n\t\t\t<li v-link=\"{path:'/about'}\">\n\t\t\t\t<a href=\"\">关于</a>\n\t\t\t</li>\n\t\t</ul>\n\t</div>\n\t<div class=\"nav-mask\">\n\t\t\n\t</div>\n</div>\n";
+
+/***/ },
+/* 21 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div>\n\t<Navbar></Navbar>\n\t<router-view\n\ttransition=\"route\"\n\ttransition-mode=\"out-in\">\t\n\t</router-view>\n</div>\n";
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
+	__webpack_require__(23)
+	__vue_script__ = __webpack_require__(24)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] src\\vue\\sign.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(25)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
+	if (__vue_template__) {
+	__vue_options__.template = __vue_template__
+	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-4382255d/sign.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 23 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 24 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// <template>
+	// 	<div class="sign center">I am {{ name }}</div>
+	// </template>
+	//
+	//
+	// <script>
+	//js
+
+	exports.default = {
+		name: 'about',
+
+		data: function data() {
+			return {
+				name: 'sign'
+			};
+		}
+	};
+	// </script>
+	//
+	//
+	// <style>
+	// .sign{
+	// 	background-color: blue;
+	// 	height: 12.5rem;
+	// }
+	// </style>
+
+/***/ },
+/* 25 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"sign center\">I am {{ name }}</div>\n";
+
+/***/ },
+/* 26 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 27 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

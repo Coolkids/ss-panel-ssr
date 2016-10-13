@@ -1,5 +1,5 @@
 <template>
-	<div class="about center">I am {{ name }}</div>
+	<div class="sign center">I am {{ name }}</div>
 </template>
 
 
@@ -11,7 +11,7 @@ export default{
 
 	data(){
 		return{
-			name : 'about' 
+			name : 'sign' 
 		}
 	}
 }
@@ -19,8 +19,8 @@ export default{
 
 
 <style>
-.about{
-	background-color: green;
+.sign{
+	background-color: blue;
 	height: 12.5rem;
 }
 </style>
