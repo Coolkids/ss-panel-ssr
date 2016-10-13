@@ -9,51 +9,52 @@ webpackJsonp([0,1],[
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
 	var vue = __webpack_require__(2);
 	var router = __webpack_require__(4);
 	var resource = __webpack_require__(5);
 
-	var home  = __webpack_require__(6);
-	var about = __webpack_require__(10);
-	var app = __webpack_require__(14);
-	var sign = __webpack_require__(22)
-	__webpack_require__(26);
+	var home = __webpack_require__(6);
+	var about = __webpack_require__(11);
+	var app = __webpack_require__(15);
+	var sign = __webpack_require__(23);
 	__webpack_require__(27);
+	__webpack_require__(28);
 
 	vue.use(router);
 	vue.use(resource);
 
 	var route = new router({
-		hashbang : false,
-		history : false,
+		hashbang: false,
+		history: false,
 		saveScrollPosition: true,
-		transitionOnLoad : true,
-		transition:true,
+		transitionOnLoad: true,
+		transition: true,
 		transitionMode: 'out-in'
 	});
 	route.mode = "html5";
 	route.map({
-		'/home':{
+		'/home': {
 			component: home
 		},
-		'/about':{
+		'/about': {
 			component: about
 		},
-		'/sign':{
+		'/sign': {
 			component: sign
 		}
 	});
 
 	route.redirect({
-	    '*': '/home'
-	})
+		'*': '/home'
+	});
 
-	route.afterEach(function(transition){
+	route.afterEach(function (transition) {
 		console.log("成功浏览到：" + transition.to.path);
-		show = false;
-	})
+	});
 
-	route.start(app,"#app");
+	route.start(app, "#app");
 
 /***/ },
 /* 2 */
@@ -14734,7 +14735,7 @@ webpackJsonp([0,1],[
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src\\vue\\home.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(9)
+	__vue_template__ = __webpack_require__(10)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -14766,24 +14767,16 @@ webpackJsonp([0,1],[
 
 /***/ },
 /* 8 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	// <template>
-	// 	<div>
-	// 		<div class="width home center">
-	// 			I am {{ name }}
-	// 		</div>
-	// 	</div>
-	// </template>
-	//
-	//
-	// <script>
-	//js
+
+	var _service = __webpack_require__(9);
+
 	exports.default = {
 		name: 'home',
 
@@ -14792,39 +14785,153 @@ webpackJsonp([0,1],[
 				name: 'home'
 			};
 		},
+
+		methods: {},
 		created: function created() {
 			this.$loadingRouteData = false;
 			console.log(this.name);
+			(0, _service.getInvi)().then(function (res) {
+				console.log(res);
+			});
 		}
 	};
+
 	// </script>
 	//
 	// <style lang="sass">
-	// .home{
+	// .home-banner{
 	// 	height: 200px;
-	// 	background: purple;
+	// }
+	// .home-row{
+	// 	width: 750px;
+	// 	margin:0 auto;
+	// 	position: relative;
+	// 	top: -1.25rem;
+	// 	background: #fff;
+	// 	z-index: 1;
+	// 	div[class*="home-"]{
+	// 		padding:.625rem 3%;
+	// 		margin-bottom: 1.25rem;
+	// 	}
+	// }
+	// .fast-link-btn{
+	// 	padding-top:1.25rem;
+	// 	ul{
+	// 		li{
+	// 			margin-right: .625rem;
+	// 			margin-bottom: 0.625rem;
+	// 		}
+	// 	}
+	// }
+	// .invi-row{
+	// 	div{
+	// 		float: left;
+	// 	}
+	// }
+	// .invi-list{
+	// 	min-width: 31.25rem;
 	// }
 	// </style>
+	// <template>
+	// 	<div class="home">
+	// 		<div class="width home-banner blue center"></div>
+	// 		<div class="home-row">
+	// 			<div class="home-user down-shadow">
+	// 				<p class="twe">A secure socks5 proxy, designed to protect your Internet traffic.</p>
+	// 				<p class="six center">
+	// 					<i>If you want to keep a secret, you must also hide it from yourself.</i>
+	// 				</p>
+	// 				<p class="four">
+	// 					I am <a href="#" class="ten red">VIP</a>
+	// 				</p>
+	// 			</div>
+	// 			<div class="home-user down-shadow">
+	// 				<div class="bor-bot pad-ten">
+	// 					快速链接 / Quick Links
+	// 				</div>
+	// 				<div class="fast-link-btn pad-ten">
+	// 					<ul class="ul">
+	// 						<li class="fl-li">
+	// 							<a href="#" class="btn-sml blue">登陆/LOGIN</a>
+	// 						</li>
+	// 						<li class="fl-li">
+	// 							<a href="#" class="btn-sml green">注册/SIGNUP</a>
+	// 						</li>
+	// 						<li class="fl-li">
+	// 							<a href="#" class="btn-sml orange">用户协议/TOS</a>
+	// 						</li>
+	// 						<li class="fl-li">
+	// 							<a href="#" class="btn-sml redbg">GITHUB</a>
+	// 						</li>
+	// 					</ul>
+	// 				</div>
+	// 			</div>
+	// 			<div class="home-user down-shadow">
+	// 				<p class="six pad-ten">
+	// 					邀请码/Invitation code
+	// 				</p>
+	// 				<div class="invi-list">
+	// 					<div class="invi-row twe bor-bot font-9a hid padt-ten">
+	// 						<div class="col-1">###</div>
+	// 						<div class="col-9 text-hidden center">邀请码 (点击邀请码进入注册页面)</div>
+	// 						<div class="col-2 center">状态</div>
+	// 					</div>
+	// 					<div class="invi-row four bor-bot hid padt-ten">
+	// 						<div class="col-1">sdfsdf</div>
+	// 						<div class="col-9 text-hidden center red">sdfssfssdfsdfsfsfsdfswdfsdfsdfswdfsdfsdfsdfsfsdfdsdfsdfsdfsdfsdfdf</div>
+	// 						<div class="col-2 center">sdfsfsfddf</div>
+	// 					</div>
+	// 				</div>
+	// 			</div>
+	// 		</div>
+	// 	</div>
+	// </template>
+	//
+	//
+	// <script>
+	//js
 
 /***/ },
 /* 9 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "\n<div>\n\t<div class=\"width home center\">\n\t\tI am {{ name }}\n\t</div>\n</div>\n";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.getInvi = getInvi;
+
+	var _vue = __webpack_require__(2);
+
+	var _vue2 = _interopRequireDefault(_vue);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function getInvi() {
+		var url = '//183.233.190.177:53178/getcode/';
+		return _vue2.default.http.get(url);
+	}
 
 /***/ },
 /* 10 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"home\">\n\t<div class=\"width home-banner blue center\"></div>\n\t<div class=\"home-row\">\n\t\t<div class=\"home-user down-shadow\">\n\t\t\t<p class=\"twe\">A secure socks5 proxy, designed to protect your Internet traffic.</p>\n\t\t\t<p class=\"six center\">\n\t\t\t\t<i>If you want to keep a secret, you must also hide it from yourself.</i>\n\t\t\t</p>\n\t\t\t<p class=\"four\">\n\t\t\t\tI am <a href=\"#\" class=\"ten red\">VIP</a>\n\t\t\t</p>\n\t\t</div>\n\t\t<div class=\"home-user down-shadow\">\n\t\t\t<div class=\"bor-bot pad-ten\">\n\t\t\t\t快速链接 / Quick Links\n\t\t\t</div>\n\t\t\t<div class=\"fast-link-btn pad-ten\">\n\t\t\t\t<ul class=\"ul\">\n\t\t\t\t\t<li class=\"fl-li\">\n\t\t\t\t\t\t<a href=\"#\" class=\"btn-sml blue\">登陆/LOGIN</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li class=\"fl-li\">\n\t\t\t\t\t\t<a href=\"#\" class=\"btn-sml green\">注册/SIGNUP</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li class=\"fl-li\">\n\t\t\t\t\t\t<a href=\"#\" class=\"btn-sml orange\">用户协议/TOS</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li class=\"fl-li\">\n\t\t\t\t\t\t<a href=\"#\" class=\"btn-sml redbg\">GITHUB</a>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"home-user down-shadow\">\n\t\t\t<p class=\"six pad-ten\">\n\t\t\t\t邀请码/Invitation code\n\t\t\t</p>\n\t\t\t<div class=\"invi-list\">\n\t\t\t\t<div class=\"invi-row twe bor-bot font-9a hid padt-ten\">\n\t\t\t\t\t<div class=\"col-1\">###</div>\n\t\t\t\t\t<div class=\"col-9 text-hidden center\">邀请码 (点击邀请码进入注册页面)</div>\n\t\t\t\t\t<div class=\"col-2 center\">状态</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"invi-row four bor-bot hid padt-ten\">\n\t\t\t\t\t<div class=\"col-1\">sdfsdf</div>\n\t\t\t\t\t<div class=\"col-9 text-hidden center red\">sdfssfssdfsdfsfsfsdfswdfsdfsdfswdfsdfsdfsdfsfsdfdsdfsdfsdfsdfsdfdf</div>\n\t\t\t\t\t<div class=\"col-2 center\">sdfsfsfddf</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n";
+
+/***/ },
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(11)
-	__vue_script__ = __webpack_require__(12)
+	__webpack_require__(12)
+	__vue_script__ = __webpack_require__(13)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src\\vue\\about.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(13)
+	__vue_template__ = __webpack_require__(14)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -14849,13 +14956,13 @@ webpackJsonp([0,1],[
 	})()}
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14891,24 +14998,24 @@ webpackJsonp([0,1],[
 	// </style>
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"about center\">I am {{ name }}</div>\n";
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(15)
-	__vue_script__ = __webpack_require__(16)
+	__webpack_require__(16)
+	__vue_script__ = __webpack_require__(17)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src\\vue\\app.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(21)
+	__vue_template__ = __webpack_require__(22)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -14933,13 +15040,13 @@ webpackJsonp([0,1],[
 	})()}
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14948,7 +15055,7 @@ webpackJsonp([0,1],[
 		value: true
 	});
 
-	var _nav = __webpack_require__(17);
+	var _nav = __webpack_require__(18);
 
 	var _nav2 = _interopRequireDefault(_nav);
 
@@ -14972,9 +15079,35 @@ webpackJsonp([0,1],[
 	};
 	// </script>
 	//
-	// <style>
-	// ul{
-	// 	list-style-type: none;
+	// <style lang="sass">
+	// .bor-bot{
+	// 	position: relative;
+	// 	&:after{
+	// 		content:"";
+	// 		position: absolute;
+	// 		width: 100%;
+	// 		bottom: 0;
+	// 		left: -3%;
+	// 		padding: 0 3%;
+	// 		height: 0.0625rem;
+	// 		background-color: rgba(0,0,0,.12);
+	// 		transform:scale(1,-1);
+	// 	}
+	// }
+	// .flex{
+	// 	display: flex;
+	// 	div{
+	// 		flex: 1;
+	// 	}
+	// }
+	// @media only screen and (max-width: 750px){
+	// 	.home-row{
+	// 		width: 90%;
+	// 		div[class*="home-"]{
+	// 			overflow-y:scroll;
+	// 			overflow-scrolling: touch;
+	// 		}
+	// 	}
 	// }
 	// </style>
 	// <template>
@@ -14991,18 +15124,18 @@ webpackJsonp([0,1],[
 	// <script>
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(18)
-	__vue_script__ = __webpack_require__(19)
+	__webpack_require__(19)
+	__vue_script__ = __webpack_require__(20)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src\\vue\\nav.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(20)
+	__vue_template__ = __webpack_require__(21)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -15027,13 +15160,13 @@ webpackJsonp([0,1],[
 	})()}
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15089,7 +15222,7 @@ webpackJsonp([0,1],[
 	// 	top: 0;
 	// 	left: 0;
 	// 	width: 100%;
-	// 	z-index: 1;
+	// 	z-index: 99;
 	// }
 	// .nav-btn{
 	// 	width: 1.875rem;
@@ -15147,30 +15280,30 @@ webpackJsonp([0,1],[
 	// </style>
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"nav-view\">\n\t<div class=\"nav-btn\">\n\t\t<a href=\"javascript:void(0)\" class=\"nav-link\" @click=\"show = !show\"></a>\n\t</div>\n</div>\n<div class=\"nav-content height\" :class=\"{'nav-show':show,'nav-hide':!show}\" @click=\"show = false\">\n\t<div class=\"nav-list height\">\n\t\t<ul>\t\n\t\t\t<li v-link=\"{path:'/home'}\">\n\t\t\t\t<a href=\"\">首页</a>\n\t\t\t</li>\n\t\t\t<li v-link=\"{path:'/sign'}\">\n\t\t\t\t<a href=\"\">注册</a>\n\t\t\t</li>\n\t\t\t<li v-link=\"{path:'/about'}\">\n\t\t\t\t<a href=\"\">关于</a>\n\t\t\t</li>\n\t\t</ul>\n\t</div>\n\t<div class=\"nav-mask\">\n\t\t\n\t</div>\n</div>\n";
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div>\n\t<Navbar></Navbar>\n\t<router-view\n\ttransition=\"route\"\n\ttransition-mode=\"out-in\">\t\n\t</router-view>\n</div>\n";
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(23)
-	__vue_script__ = __webpack_require__(24)
+	__webpack_require__(24)
+	__vue_script__ = __webpack_require__(25)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src\\vue\\sign.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(25)
+	__vue_template__ = __webpack_require__(26)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -15195,13 +15328,13 @@ webpackJsonp([0,1],[
 	})()}
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15237,19 +15370,19 @@ webpackJsonp([0,1],[
 	// </style>
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"sign center\">I am {{ name }}</div>\n";
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
