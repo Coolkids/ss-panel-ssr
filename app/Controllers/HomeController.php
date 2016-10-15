@@ -31,7 +31,11 @@ class HomeController extends BaseController
     {
         $msg = DbConfig::get('home-code');
         $codes = InviteCode::where('user_id', '=', '0')->take(10)->get();
-        return $this->withJson($codes);
+        $res = [
+            "id" => $codes->id(),
+            "code" => $codes->code()
+        ];
+        return $this->withJson($res);
     }
 
     public function debug($request, $response, $args)
