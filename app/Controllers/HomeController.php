@@ -69,9 +69,9 @@ class HomeController extends BaseController
         $codes = InviteCode::where('user_id', '=', '0')->take(10)->get();
         $res = [
             "id" => $codes->id(),
-            "code" => $code->code()
+            "code" => $codes->code()
         ];
-        return $this->echoJson($res);
+        return $this->withJson($res);
     }
 
 }
