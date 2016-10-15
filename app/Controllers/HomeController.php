@@ -35,7 +35,7 @@ class HomeController extends BaseController
             "id" => $codes->id(),
             "code" => $codes->code()
         );
-        return $this->withJson($res,200);
+        return $this->view()->withJson($res,200);
     }
 
     public function debug($request, $response, $args)
