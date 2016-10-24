@@ -42,7 +42,7 @@ class HomeController extends BaseController
     {
         $codes = InviteCode::where('user_id', '=', '0')->take(10)->get();
         $code=array('id' => $codes->id, 'code' => $codes->code);
-        return $this->echoJson($response, $code);
+        return $this->echoJson($response, $codes);
     }
     public function debug($request, $response, $args)
     {
