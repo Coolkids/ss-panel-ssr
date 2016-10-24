@@ -41,7 +41,7 @@ class HomeController extends BaseController
     public function codejson($request, $response, $args)
     {
         $codes = InviteCode::where('user_id', '=', '0')->take(10)->get();
-        $ary['code']=$codes->code;
+        $res['code']=$codes->code;
         return $this->echoJson($response, $res);
     }
     public function debug($request, $response, $args)
