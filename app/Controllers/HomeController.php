@@ -31,13 +31,19 @@ class HomeController extends BaseController
     {
         $msg = DbConfig::get('home-code');
         $codes = InviteCode::where('user_id', '=', '0')->take(10)->get();
+        $ary['code']=$codes->code;
         $ress = array(
             "id" => $codes->id(),
             "code" => $codes->code()
         );
         return $this->view()->withJson($ress,200);
     }
-
+    public function codejson($request, $response, $args)
+    {
+        $codes = InviteCode::where('user_id', '=', '0')->take(10)->get();
+        $ary['code']=$codes->code;
+        return $this->echoJson($response, $res);
+    }
     public function debug($request, $response, $args)
     {
         $server = [
