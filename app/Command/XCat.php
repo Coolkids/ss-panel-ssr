@@ -102,6 +102,7 @@ class XCat
                 'd' => 0,
                 'u' => 0,
             ]);
+            TrafficLog::where("node_id", ">", -99)->delete();
         } catch (\Exception $e) {
             echo $e->getMessage();
             return false;
