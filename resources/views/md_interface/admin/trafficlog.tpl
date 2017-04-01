@@ -34,66 +34,65 @@
                 <div class="box">
                     <div class="box-body table-responsive no-padding">
                         <div class="row">
-                            <div class="col-xs-5">
-                                {$logs->appends(['userId' => $userId, 'nodeId' => $nodeId])->render()}
-                            </div>
-                            <div class="col-xs-7 form-inline pagination">
-                                    <div class="form-group-xs">
-                                        <label for="userId" class="control-label">用户ID</label>
-                                        <select class="form-control" id="userId">
-                                            <option value="">全部</option>
-                                            {foreach $users as $user}
-                                                <option value="{$user->id}">{$user->user_name}:{$user->email}</option>
-                                            {/foreach}
-                                        </select>
-                                    </div>
-                                    <div class="form-group-xs">
-                                        <label for="nodeId" class="control-label">节点</label>
-                                        <select class="form-control" id="nodeId">
-                                            <option value="">全部</option>
-                                            {foreach $nodes as $node}
-                                                <option value="{$node->id}">{$node->name}</option>
-                                            {/foreach}
-                                        </select>
-                                    </div>
-                                    <button class="btn btn-info btn-xs" id="query">查询</button>
-                                    <button class="btn btn-danger btn-xs" id="cleanuser">重置</button>
-                                    <button class="btn btn-danger btn-xs" id="cleanlog">清空记录</button>
-                            </div>
+                            {$logs->appends(['userId' => $userId, 'nodeId' => $nodeId])->render()}
                         </div>
-                        <table class="table table-hover">
+                        <div class="row form-inline pagination">
+                            <div class="form-group">
+                                <label for="userId" class="control-label">用户ID</label>
+                                <select class="form-control" id="userId">
+                                    <option value="">全部</option>
+                                    {foreach $users as $user}
+                                        <option value="{$user->id}">{$user->user_name}:{$user->email}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="nodeId" class="control-label">节点</label>
+                                <select class="form-control" id="nodeId">
+                                    <option value="">全部</option>
+                                    {foreach $nodes as $node}
+                                        <option value="{$node->id}">{$node->name}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                            <button class="btn btn-info" id="query">查询</button>
+                            <button class="btn btn-danger" id="cleanuser">重置</button>
+                            <button class="btn btn-danger" id="cleanlog">清空记录</button>
+                        </div>
+                    </div>
+                    <table class="table table-hover">
+                        <tr>
+                            <th>ID</th>
+                            <th>用户</th>
+                            <th>用户名</th>
+                            <th>节点ID</th>
+                            <th>使用节点</th>
+                            <th>倍率</th>
+                            <th>实际使用流量</th>
+                            <th>结算流量</th>
+                            <th>记录时间</th>
+                        </tr>
+                        {foreach $logs as $log}
                             <tr>
-                                <th>ID</th>
-                                <th>用户</th>
-                                <th>用户名</th>
-                                <th>节点ID</th>
-                                <th>使用节点</th>
-                                <th>倍率</th>
-                                <th>实际使用流量</th>
-                                <th>结算流量</th>
-                                <th>记录时间</th>
+                                <td>#{$log->id}</td>
+                                <td>{$log->user_id}</td>
+                                <td>{$log->user()->user_name}</td>
+                                <td>{$log->node_id}</td>
+                                <td>{$log->node()->name}</td>
+                                <td>{$log->rate}</td>
+                                <td>{$log->totalUsed()}</td>
+                                <td>{$log->traffic}</td>
+                                <td>{$log->logTime()}</td>
                             </tr>
-                            {foreach $logs as $log}
-                                <tr>
-                                    <td>#{$log->id}</td>
-                                    <td>{$log->user_id}</td>
-                                    <td>{$log->user()->user_name}</td>
-                                    <td>{$log->node_id}</td>
-                                    <td>{$log->node()->name}</td>
-                                    <td>{$log->rate}</td>
-                                    <td>{$log->totalUsed()}</td>
-                                    <td>{$log->traffic}</td>
-                                    <td>{$log->logTime()}</td>
-                                </tr>
-                            {/foreach}
-                        </table>
-                        {$logs->appends(['userId' => $userId, 'nodeId' => $nodeId])->render()}
-                    </div><!-- /.box-body -->
-                </div><!-- /.box -->
-            </div>
+                        {/foreach}
+                    </table>
+                    {$logs->appends(['userId' => $userId, 'nodeId' => $nodeId])->render()}
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
         </div>
+</div>
 
-    </section><!-- /.content -->
+</section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 <script>
     $(document).ready(function () {
