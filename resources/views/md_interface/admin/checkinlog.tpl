@@ -64,6 +64,7 @@
         $.ajax({
             type: "POST",
             url: "/admin/checkinlog/clear",
+            dataType: "json",
             success: function (data) {
                 if (data.ret) {
                     $("#msg-success").show(100);
