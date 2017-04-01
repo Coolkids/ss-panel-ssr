@@ -1,6 +1,9 @@
 {include file='admin/main.tpl'}
 
 <!-- Content Wrapper. Contains page content -->
+<style>
+    .pagination{display:inline-block;padding-left:0;margin:5px 0 !important;border-radius:4px}
+</style>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -33,7 +36,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-body table-responsive no-padding">
-                        <div class="form-inline">
+                        <div class="form-inline" style="margin-top: 5px;">
                             <div class="form-group">
                                 <label for="userId" class="control-label">用户ID</label>
                                 <select class="form-control" id="userId">
