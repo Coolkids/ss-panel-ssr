@@ -53,9 +53,11 @@
                                     {/foreach}
                                 </select>
                             </div>
-                            <button class="btn btn-info" id="query" style="float: right;">查询</button>
-                            <button class="btn btn-danger" id="cleanuser" style="float: right;">重置</button>
-                            <button class="btn btn-danger" id="cleanlog" style="float: right;">清空记录</button>
+                            <div style="float: right;">
+                                <button class="btn btn-info btn-sm" id="query" >查询</button>
+                                <button class="btn btn-danger btn-sm" id="cleanuser">重置</button>
+                                <button class="btn btn-danger btn-sm" id="cleanlog">清空记录</button>
+                            </div>
                         </div>
                     </div>
                     <table class="table table-hover">
@@ -142,7 +144,7 @@
                 }
             })
         });
-        $(".pagination").addClass("pagination-sm");
+        //$(".pagination").addClass("pagination-sm");
     })
 </script>
 {include file='admin/footer.tpl'}
