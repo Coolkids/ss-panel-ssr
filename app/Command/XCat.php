@@ -7,11 +7,12 @@ namespace App\Command;
  * @package App\Command
  */
 
+use App\Models\TrafficLog;
 use App\Models\User;
 use App\Services\Config;
 use App\Utils\Hash;
 use App\Utils\Tools;
-use App\Utils\GA; 
+use App\Utils\GA;
 
 class XCat
 {
