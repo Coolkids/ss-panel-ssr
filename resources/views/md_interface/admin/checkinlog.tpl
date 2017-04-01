@@ -25,8 +25,14 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-body table-responsive no-padding">
-                        {$logs->render()}
-                        <button class="btn btn-info" id="cleanlog">清空记录</button>
+                        <div class="row">
+                            <div class="col-xs-7">
+                                {$logs->render()}
+                            </div>
+                            <div class="col-xs-5 form-inline pagination">
+                                <button class="btn btn-danger btn-sm" id="cleanlog">清空记录</button>
+                            </div>
+                        </div>
                         <table class="table table-hover">
                             <tr>
                                 <th>ID</th>

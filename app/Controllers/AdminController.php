@@ -151,7 +151,7 @@ class AdminController extends UserController
 
         CheckInLog::where("user_id", ">", -99)->delete();
         $res['ret'] = 1;
-        $res['msg'] = "更新成功";
+        $res['msg'] = "清理成功";
         return $response->getBody()->write(json_encode($res));
     }
 
