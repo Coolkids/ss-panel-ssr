@@ -170,7 +170,7 @@
             }
             window.location.href = '/admin/invite/user/'+userId+'/delete';
         });
-        $(".pagination").addClass("pagination-sm");
+        //$(".pagination").addClass("pagination-sm");
     })
 </script>
 
