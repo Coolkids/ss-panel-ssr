@@ -39,6 +39,7 @@ class AdminController extends UserController
         if($userId != ""){
             $codes = InviteCode::where("user_id", "=", $userId)->paginate(15, ['*'], 'page', $pageNum);
         }
+        $codes->setPath('/admin/trafficlog');
         return $this->view()->assign('codes', $codes)
                             ->assign('userId', $userId)
                             ->assign('users', $users)
