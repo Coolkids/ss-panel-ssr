@@ -1,9 +1,6 @@
 {include file='admin/main.tpl'}
 
 <!-- Content Wrapper. Contains page content -->
-<style>
-    .pagination{display:inline-block;padding-left:0;margin:5px 0;border-radius:4px}
-</style>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
