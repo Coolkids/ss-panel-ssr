@@ -38,7 +38,7 @@
                                 {$logs->appends(['userId' => $userId, 'nodeId' => $nodeId])->render()}
                             </div>
                             <div class="col-xs-7 form-inline pagination">
-                                    <div class="form-group">
+                                    <div class="form-group-xs">
                                         <label for="userId" class="control-label">用户ID</label>
                                         <select class="form-control" id="userId">
                                             <option value="">全部</option>
@@ -47,7 +47,7 @@
                                             {/foreach}
                                         </select>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group-xs">
                                         <label for="nodeId" class="control-label">节点</label>
                                         <select class="form-control" id="nodeId">
                                             <option value="">全部</option>
@@ -56,9 +56,9 @@
                                             {/foreach}
                                         </select>
                                     </div>
-                                    <button class="btn btn-info" id="query">查询</button>
-                                    <button class="btn btn-danger" id="cleanuser">重置</button>
-                                    <button class="btn btn-info" id="cleanlog">清空记录</button>
+                                    <button class="btn btn-info btn-xs" id="query">查询</button>
+                                    <button class="btn btn-danger btn-xs" id="cleanuser">重置</button>
+                                    <button class="btn btn-danger btn-xs" id="cleanlog">清空记录</button>
                             </div>
                         </div>
                         <table class="table table-hover">
