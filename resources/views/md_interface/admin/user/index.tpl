@@ -40,6 +40,7 @@
                                 <th>加密方式</th>
                                 <th>协议</th>
                                 <th>混淆</th>
+                                <th>上传/下载</th>
                                 <th>已用流量/总流量</th>
                                 <th>最后在线时间</th>
                                 <th>最后签到时间</th>
@@ -60,6 +61,7 @@
                                 <td>{$user->method}</td>
                                 <td>{$user->protocol}</td>
                                 <td>{$user->obfs}</td>
+                                <td>{$user->usedUpTraffic()}/{$user->usedDownTraffic()}</td>
                                 <td>{$user->usedTraffic()}/{$user->enableTraffic()}</td>
                                 <td>{$user->lastSsTime()}</td>
                                 <td>{$user->lastCheckInTime()}</td>
