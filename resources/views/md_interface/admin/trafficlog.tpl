@@ -33,7 +33,6 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-body table-responsive no-padding">
-                        {$logs->appends(['userId' => $userId, 'nodeId' => $nodeId])->render()}
                         <div class="form-inline pagination">
                             <div class="form-group">
                                 <label for="userId" class="control-label">用户ID</label>
@@ -53,12 +52,10 @@
                                     {/foreach}
                                 </select>
                             </div>
-                            <div style="float: right;">
-                                <button class="btn btn-info btn-sm" id="query" >查询</button>
-                                <button class="btn btn-danger btn-sm" id="cleanuser">重置</button>
-                                <button class="btn btn-danger btn-sm" id="cleanlog">清空记录</button>
-                            </div>
+                            <button class="btn btn-info" id="query" >查询</button>
+                            <button class="btn btn-danger" id="cleanuser">重置</button>
                         </div>
+                        <button class="btn btn-danger" id="cleanlog" style="float: right;">清空记录</button>
                     </div>
                     <table class="table table-hover">
                         <tr>
@@ -102,6 +99,10 @@
             window.location.href = '/admin/trafficlog?userId=' + $("#userId").val() + '&nodeId=' + $("#nodeId").val();
         });
         $("#cleanuser").click(function () {
+            var r=confirm("确认清空用户流量么?");
+            if(r!=true){
+                return;
+            }
             $.ajax({
                 type: "POST",
                 url: "/admin/api/cleanuser",
@@ -124,6 +125,10 @@
         });
         //不建议清空流量日志
         $("#cleanlog").click(function () {
+            var r=confirm("确认清空流量日志么?此操作会影响节点流量统计");
+            if(r!=true){
+                return;
+            }
             $.ajax({
                 type: "POST",
                 url: "/admin/api/cleanlog",
