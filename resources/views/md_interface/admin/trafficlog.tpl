@@ -33,7 +33,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-body table-responsive no-padding">
-                        <div class="form-inline pagination">
+                        <div class="form-inline">
                             <div class="form-group">
                                 <label for="userId" class="control-label">用户ID</label>
                                 <select class="form-control" id="userId">
@@ -54,9 +54,10 @@
                             </div>
                             <button class="btn btn-info" id="query" >查询</button>
                             <button class="btn btn-danger" id="cleanuser">重置</button>
+                            <button class="btn btn-danger" id="cleanlog" style="float: right;">清空记录</button>
                         </div>
-                        <button class="btn btn-danger" id="cleanlog" style="float: right;">清空记录</button>
                     </div>
+                    {$logs->appends(['userId' => $userId, 'nodeId' => $nodeId])->render()}
                     <table class="table table-hover">
                         <tr>
                             <th>ID</th>
