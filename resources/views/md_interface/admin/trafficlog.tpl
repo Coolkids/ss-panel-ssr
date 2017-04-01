@@ -2,7 +2,7 @@
 
 <!-- Content Wrapper. Contains page content -->
 <style>
-    .pagination{display:inline-block;padding-left:0;margin:5px 0 !important;border-radius:4px}
+    .pagination{display:inline-block;padding-left:0;margin:5px 0;border-radius:4px}
 </style>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
