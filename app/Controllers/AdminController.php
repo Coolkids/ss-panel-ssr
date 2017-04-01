@@ -146,6 +146,15 @@ class AdminController extends UserController
         return $this->view()->assign('logs', $traffic)->display('admin/checkinlog.tpl');
     }
 
+    public function checkInLogClear($request, $response, $args)
+    {
+
+        CheckInLog::where("user_id", ">", -99)->delete();
+        $res['ret'] = 1;
+        $res['msg'] = "更新成功";
+        return $response->getBody()->write(json_encode($res));
+    }
+
     public function trafficLog($request, $response, $args)
     {
         $pageNum = 1;

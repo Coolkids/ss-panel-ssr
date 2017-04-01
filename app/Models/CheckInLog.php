@@ -19,7 +19,10 @@ class CheckInLog extends Model
     {
         return Tools::flowAutoShow($this->attributes['traffic']);
     }
-
+    public function user()
+    {
+        return User::find($this->attributes['user_id']);
+    }
     /**
      * @return mixed
      */

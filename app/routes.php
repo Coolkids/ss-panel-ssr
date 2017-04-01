@@ -88,7 +88,8 @@ $app->group('/admin', function () {
     $this->get('', 'App\Controllers\AdminController:index');
     $this->get('/', 'App\Controllers\AdminController:index');
     $this->get('/trafficlog', 'App\Controllers\AdminController:trafficLog');
-    $this->get('/checkinlog', 'App\Controllers\AdminController:checkinLog');
+    $this->get('/checkinlog', 'App\Controllers\AdminController:checkInLog');
+    $this->post('/checkinlog/clear', 'App\Controllers\AdminController:checkInLogClear');
     // app config
     $this->get('/config', 'App\Controllers\AdminController:config');
     $this->put('/config', 'App\Controllers\AdminController:updateConfig');

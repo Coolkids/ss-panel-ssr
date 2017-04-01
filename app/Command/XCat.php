@@ -7,6 +7,7 @@ namespace App\Command;
  * @package App\Command
  */
 
+use App\Models\CheckInLog;
 use App\Models\TrafficLog;
 use App\Models\User;
 use App\Services\Config;
@@ -104,6 +105,7 @@ class XCat
                 'u' => 0,
             ]);
             TrafficLog::where("node_id", ">", -99)->delete();
+            CheckInLog::where("user_id", ">", -99)->delete();
         } catch (\Exception $e) {
             echo $e->getMessage();
             return false;
