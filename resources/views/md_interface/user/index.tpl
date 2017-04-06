@@ -203,7 +203,7 @@
                                                                                     });
                                                                                 }
                                                                             });
-                                                                            setInterval("getLag_{$node->id}()",1000);
+                                                                            setInterval("getLag_{$node->id}",1000);
                                                                         })
                                                                     </script>
                                                                     <tr>
