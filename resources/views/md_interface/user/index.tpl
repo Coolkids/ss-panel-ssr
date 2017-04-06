@@ -1,5 +1,6 @@
 {include file='user/header.tpl'}
 <script src=" /assets/public/js/jquery.qrcode.min.js "></script>
+<script src=" /assets/public/js/ping.js "></script>
 <body class="page-pink">
 <header class="header header-pink header-waterfall ui-header">
     <ul class="nav nav-list pull-left">
@@ -188,6 +189,19 @@
                                                                         <td>状态</td>
                                                                         <td>{$node->status}</td>
                                                                     </tr>
+                                                                    <tr>
+                                                                        <td>延时</td>
+                                                                        <td id="lag_{$node->id}">0ms</td>
+                                                                    </tr>
+                                                                    <script>
+                                                                        $(document).ready(function () {
+                                                                            var p = new Ping();
+                                                                            p.ping("http://{$node->server}", function(data) {
+                                                                                $("#lag_{$node->id}").text(data+"ms");
+                                                                            });
+
+                                                                        })
+                                                                    </script>
                                                                     <tr>
                                                                         <td>在线人数</td>
                                                                         <td>{$node->getOnlineUserCount()}</td>
