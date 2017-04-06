@@ -201,7 +201,7 @@
                                                                                     $("#lag_{$node->id}").text(data+"ms");
                                                                                 });
                                                                             };
-                                                                            setInterval("getLag_{$node->id}()",1000);
+                                                                            setInterval("getLag_{$node->id}()",5000);
                                                                         })
                                                                     </script>
                                                                     <tr>
