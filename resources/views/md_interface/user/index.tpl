@@ -196,10 +196,14 @@
                                                                     <script>
                                                                         $(document).ready(function () {
                                                                             var p = new Ping();
-                                                                            p.ping("http://{$node->server}", function(data) {
-                                                                                $("#lag_{$node->id}").text(data+"ms");
+                                                                            $.extend({
+                                                                                getLag_{$node->id}:function(){
+                                                                                    p.ping("http://{$node->server}", function(data) {
+                                                                                        $("#lag_{$node->id}").text(data+"ms");
+                                                                                    });
+                                                                                }
                                                                             });
-
+                                                                            setInterval("getLag_{$node->id}()",1000);
                                                                         })
                                                                     </script>
                                                                     <tr>
