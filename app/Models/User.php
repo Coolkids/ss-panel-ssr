@@ -218,7 +218,7 @@ class User extends Model
             $user->user_name = "系统";
             return $user;
         }
-        return User::where('user_id', $uid)->get();
+        return User::find($uid);
     }
 
 }
