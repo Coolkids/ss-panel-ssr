@@ -214,7 +214,7 @@ class User extends Model
         $uid = $this->attributes['ref_by'];
         if($uid==0){
             $user = new User();
-            $user->user_id = 0;
+            $user->id = 0;
             $user->user_name = "系统";
             return $user;
         }
