@@ -209,4 +209,16 @@ class User extends Model
         return InviteCode::where('user_id', $uid)->get();
     }
 
+    public function ref_byUser()
+    {
+        $uid = $this->attributes['ref_by'];
+        if($uid==0){
+            $user = new User();
+            $user->user_id = 0;
+            $user->user_name = "系统";
+            return $user;
+        }
+        return User::where('user_id', $uid)->get();
+    }
+
 }
