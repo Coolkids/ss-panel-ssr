@@ -543,8 +543,7 @@
                     <label class="floating-label" for="SSRProtocol"></label>
                     <select class="form-control" id="SSRProtocol">
                         <option value="{$user->protocol}">当前:{$user->protocol}</option>
-                        <!--option value="origin">origin(无验证)</option-->
-                        <option value="auth_sha1_v2">auth_sha1_v2</option>
+                        <!--option value="origin">origin(无协议)</option-->
                         <option value="auth_sha1_v4">auth_sha1_v4</option>
                         <option value="auth_aes128_md5">auth_aes128_md5</option>
                         <option value="auth_aes128_sha1">auth_aes128_sha1</option>
