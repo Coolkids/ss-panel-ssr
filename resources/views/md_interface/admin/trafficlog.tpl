@@ -220,7 +220,6 @@
                                 },
                                 tooltip: {
                                     trigger: 'axis',
-                                    formatter: "{a} : {c} MB",
                                     axisPointer: {
                                         animation: false
                                     }

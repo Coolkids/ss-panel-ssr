@@ -146,6 +146,66 @@
                             </div>
                             <div class="col-md-6">
                                 <div id="per_chart" style="width: 100%;height: 500px;margin: auto"></div>
+                                <script>
+                                    $(document).ready(function () {
+                                        var xa = [];
+                                        var ya = [];
+                                        var data = {$echartData};
+                                        for (var o in data) {
+                                            xa.push(data[o].name_t);
+                                            ya.push({value:data[o].total, name:data[o].name_t});
+                                        }
+
+                                        var myChart = echarts.init(document.getElementById('per_chart'));
+                                        myChart.setOption({
+                                            title: {
+                                                text: '用户使用占比'
+                                            },
+                                            tooltip: {
+                                                trigger: 'item',
+                                                formatter: "{a} <br/>{b}: {c} ({d}%)"
+                                            },
+                                            legend: {
+                                                orient: 'vertical',
+                                                x: 'left',
+                                                data:xa
+                                            },
+                                            series: [
+                                                {
+                                                    name:'使用情况',
+                                                    type:'pie',
+                                                    radius: ['50%', '70%'],
+                                                    avoidLabelOverlap: false,
+                                                    label: {
+                                                        normal: {
+                                                            show: false,
+                                                            position: 'center'
+                                                        },
+                                                        emphasis: {
+                                                            show: true,
+                                                            textStyle: {
+                                                                fontSize: '30',
+                                                                fontWeight: 'bold'
+                                                            }
+                                                        }
+                                                    },
+                                                    labelLine: {
+                                                        normal: {
+                                                            show: false
+                                                        }
+                                                    },
+                                                    data:[
+                                                        {value:335, name:'直接访问'},
+                                                        {value:310, name:'邮件营销'},
+                                                        {value:234, name:'联盟广告'},
+                                                        {value:135, name:'视频广告'},
+                                                        {value:1548, name:'搜索引擎'}
+                                                    ]
+                                                }
+                                            ]
+                                        });
+                                    });
+                                </script>
                             </div>
                         </div>
                     </div><!-- /.box-body -->
