@@ -94,7 +94,7 @@
                             var ya = [];
                             var data = {$echartData};
                             for (var o in data) {
-                                xa.push(new Date(data[o].log_time).toLocaleString());
+                                xa.push(new Date(data[o].log_time*1000).toLocaleString());
                                 ya.push(data[o].total);
                             }
 
@@ -123,7 +123,7 @@
                                     }
                                 },
                                 series: [{
-                                    name: '流量',
+                                    name: '流量MB',
                                     type: 'line',
                                     showSymbol: false,
                                     hoverAnimation: false,
