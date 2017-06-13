@@ -145,6 +145,7 @@
                                 </script>
                             </div>
                             <div class="col-md-6">
+                                {{a}}
                                 <div id="per_chart" style="width: 100%;height: 500px;margin: auto"></div>
                                 <script>
                                     $(document).ready(function () {
@@ -153,7 +154,7 @@
                                         var data = {$echartData};
                                         for (var o in data) {
                                             xa.push(data[o].name_t);
-                                            ya.push(['value':data[o].total, 'name':data[o].name_t]);
+                                            ya.push(JSON.stringify("['value':data[o].total, 'name':data[o].name_t]"));
                                         }
 
                                         var myChart = echarts.init(document.getElementById('per_chart'));
