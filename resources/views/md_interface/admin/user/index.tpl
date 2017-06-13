@@ -88,11 +88,11 @@
                                         var ya = [];
                                         var data = {$echartData};
                                         for (var o in data) {
-                                            xa.push(data[o].user_name);
+                                            xa.push(data[o].name_t);
                                             ya.push(data[o].total);
                                         }
 
-                                        var myChart = echarts.init(document.getElementById('total_chart'));
+                                        var myChart = echarts.init(document.getElementById('bar_chart'));
                                         myChart.setOption({
                                             title: {
                                                 text: '用户使用柱状图'
@@ -111,16 +111,13 @@
                                             },
                                             xAxis: {
                                                 type: 'category',
-                                                splitLine: {
-                                                    show: false
+                                                axisTick: {
+                                                    alignWithLabel: true
                                                 },
                                                 data: xa
                                             },
                                             yAxis: {
-                                                type: 'value',
-                                                splitLine: {
-                                                    show: false
-                                                }
+                                                type: 'value'
                                             },
                                             dataZoom: [
                                                 {
