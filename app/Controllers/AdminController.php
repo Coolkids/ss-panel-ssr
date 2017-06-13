@@ -168,8 +168,8 @@ class AdminController extends UserController
             $nodeId = $request->getQueryParams()["nodeId"];
         }
         $userId = "";
-        //$echartData = DB::select("SELECT SUM(u)+SUM(d) as total, log_time FROM user_traffic_log group by log_time ORDER BY log_time");
-        $echartData = TrafficLog::select("SUM(u)+SUM(d) as total, log_time")->get();
+        $echartData = TrafficLog::hydrateRaw("SELECT SUM(u)+SUM(d) as total, log_time FROM user_traffic_log group by log_time ORDER BY log_time");
+        //$echartData = TrafficLog::select("SUM(u)+SUM(d) as total, log_time")->get();
         if (isset($request->getQueryParams()["userId"])) {
             $userId = $request->getQueryParams()["userId"];
         }
