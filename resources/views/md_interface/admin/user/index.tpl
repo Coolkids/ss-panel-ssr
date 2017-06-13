@@ -153,7 +153,7 @@
                                         var data = {$echartData};
                                         for (var o in data) {
                                             xa.push(data[o].name_t);
-                                            ya.push({value:data[o].total, name:data[o].name_t});
+                                            ya.push({value: data[o].total, name: data[o].name_t});
                                         }
 
                                         var myChart = echarts.init(document.getElementById('per_chart'));
@@ -194,13 +194,7 @@
                                                             show: false
                                                         }
                                                     },
-                                                    data:[
-                                                        {value:335, name:'直接访问'},
-                                                        {value:310, name:'邮件营销'},
-                                                        {value:234, name:'联盟广告'},
-                                                        {value:135, name:'视频广告'},
-                                                        {value:1548, name:'搜索引擎'}
-                                                    ]
+                                                    data:ya
                                                 }
                                             ]
                                         });
