@@ -175,16 +175,16 @@ class AdminController extends UserController
         }
         $logs = TrafficLog::orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
         if($nodeId!=""&&$userId!=""){
-            $userName = User::where('id', '=', $userId);
-            $nodeName = Node::where('id', '=', $nodeId);
+            $userName = User::where('id', '=', $userId)->get();
+            $nodeName = Node::where('id', '=', $nodeId)->get();
             $logs = TrafficLog::where('user_id', '=', $userId)->where('node_id', '=', $nodeId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
             $echartData = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, log_time FROM user_traffic_log where user_id=? and node_id=? group by log_time ORDER BY log_time", [$userId, $nodeId]);
         }elseif ($nodeId!=""&&$userId==""){
-            $nodeName = Node::where('id', '=', $nodeId);
+            $nodeName = Node::where('id', '=', $nodeId)->get();
             $logs = TrafficLog::where('node_id', '=', $nodeId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
             $echartData = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, log_time FROM user_traffic_log where node_id=? group by log_time ORDER BY log_time", [$nodeId]);
         }elseif ($nodeId==""&&$userId!=""){
-            $userName = User::where('id', '=', $userId);
+            $userName = User::where('id', '=', $userId)->get();
             $logs = TrafficLog::where('user_id', '=', $userId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
             $echartData = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, log_time FROM user_traffic_log where user_id=? group by log_time ORDER BY log_time", [$userId]);
         }
