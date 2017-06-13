@@ -157,7 +157,7 @@
                                             dic["value"] = data[o].total;
                                             dic["name"] = data[o].name_t;
                                             xa.push(data[o].name_t);
-                                            ya.push(dic);
+                                            ya.push(JSON.parse(dic));
                                         }
 
                                         var myChart = echarts.init(document.getElementById('per_chart'));
