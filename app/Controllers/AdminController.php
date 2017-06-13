@@ -181,20 +181,20 @@ class AdminController extends UserController
             $node_t = Node::where('id', '=', $nodeId)->get();
             $logs = TrafficLog::where('user_id', '=', $userId)->where('node_id', '=', $nodeId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
             $echartData = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, log_time FROM user_traffic_log where user_id=? and node_id=? group by log_time ORDER BY log_time", [$userId, $nodeId]);
-            $echartHour = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d %H') FROM user_traffic_log where user_id=? and node_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d %H') ORDER BY log_time", [$userId, $nodeId]);
-            $echartDay = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d') FROM user_traffic_log where user_id=? and node_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d') ORDER BY log_time", [$userId, $nodeId]);
+            $echartHour = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d %H') as log_time FROM user_traffic_log where user_id=? and node_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d %H') ORDER BY log_time", [$userId, $nodeId]);
+            $echartDay = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d') as log_time FROM user_traffic_log where user_id=? and node_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d') ORDER BY log_time", [$userId, $nodeId]);
         }elseif ($nodeId!=""&&$userId==""){
             $node_t = Node::where('id', '=', $nodeId)->get();
             $logs = TrafficLog::where('node_id', '=', $nodeId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
             $echartData = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, log_time FROM user_traffic_log where node_id=? group by log_time ORDER BY log_time", [$nodeId]);
-            $echartHour = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d %H') FROM user_traffic_log where node_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d %H') ORDER BY log_time", [$nodeId]);
-            $echartDay = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d') FROM user_traffic_log where node_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d') ORDER BY log_time", [$nodeId]);
+            $echartHour = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d %H') as log_time FROM user_traffic_log where node_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d %H') ORDER BY log_time", [$nodeId]);
+            $echartDay = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d') as log_time FROM user_traffic_log where node_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d') ORDER BY log_time", [$nodeId]);
         }elseif ($nodeId==""&&$userId!=""){
             $user_t = User::where('id', '=', $userId)->get();
             $logs = TrafficLog::where('user_id', '=', $userId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
             $echartData = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, log_time FROM user_traffic_log where user_id=? group by log_time ORDER BY log_time", [$userId]);
-            $echartHour = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d %H') FROM user_traffic_log where user_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d %H') ORDER BY log_time", [$userId]);
-            $echartDay = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d') FROM user_traffic_log where user_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d') ORDER BY log_time", [$userId]);
+            $echartHour = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d %H') as log_time FROM user_traffic_log where user_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d %H') ORDER BY log_time", [$userId]);
+            $echartDay = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d') as log_time FROM user_traffic_log where user_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d') ORDER BY log_time", [$userId]);
         }
 
         $nodes = Node::all();
