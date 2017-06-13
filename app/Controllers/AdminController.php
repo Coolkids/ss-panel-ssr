@@ -11,7 +11,6 @@ use App\Models\TrafficLog;
 use App\Services\Analytics;
 use App\Services\DbConfig;
 use App\Utils\Tools;
-use Illuminate\Support\Facades\DB;
 
 /**
  *  Admin Controller
