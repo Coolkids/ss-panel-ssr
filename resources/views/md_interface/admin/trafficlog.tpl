@@ -84,6 +84,122 @@
                             </tr>
                         {/foreach}
                     </table>
+                    <div id="day_chart" style="width: 100%;height: 500px;margin: auto"></div>
+                    <script>
+                        $(document).ready(function () {
+                            var xa = [];
+                            var ya = [];
+                            var data = {$echartDay};
+                            for (var o in data) {
+                                xa.push(data[o].log_time);
+                                ya.push(data[o].total);
+                            }
+
+                            var myChart = echarts.init(document.getElementById('day_chart'));
+                            myChart.setOption({
+                                title: {
+                                    text: '{$node->name}的{$user->user_name}流量数据'
+                                },
+                                tooltip: {
+                                    trigger: 'axis',
+                                    axisPointer: {
+                                        animation: false
+                                    }
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    splitLine: {
+                                        show: false
+                                    },
+                                    data: xa
+                                },
+                                yAxis: {
+                                    type: 'value',
+                                    splitLine: {
+                                        show: false
+                                    }
+                                },
+                                dataZoom: [
+                                    {
+                                        type: 'inside'
+                                    }
+                                ],
+                                series: [{
+                                    name: '流量',
+                                    type: 'line',
+                                    data: ya
+                                }]
+                            });
+
+                            var zoomSize = 60;
+                            myChart.on('click', function (params) {
+                                //console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+                                myChart.dispatchAction({
+                                    type: 'dataZoom',
+                                    startValue: xa[Math.max(params.dataIndex - zoomSize / 2, 0)],
+                                    endValue: xa[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+                                });
+                            });
+                        });
+                    </script>
+                    <div id="hour_chart" style="width: 100%;height: 500px;margin: auto"></div>
+                    <script>
+                        $(document).ready(function () {
+                            var xa = [];
+                            var ya = [];
+                            var data = {$echartHour};
+                            for (var o in data) {
+                                xa.push(data[o].log_time);
+                                ya.push(data[o].total);
+                            }
+
+                            var myChart = echarts.init(document.getElementById('hour_chart'));
+                            myChart.setOption({
+                                title: {
+                                    text: '{$node->name}的{$user->user_name}流量数据'
+                                },
+                                tooltip: {
+                                    trigger: 'axis',
+                                    axisPointer: {
+                                        animation: false
+                                    }
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    splitLine: {
+                                        show: false
+                                    },
+                                    data: xa
+                                },
+                                yAxis: {
+                                    type: 'value',
+                                    splitLine: {
+                                        show: false
+                                    }
+                                },
+                                dataZoom: [
+                                    {
+                                        type: 'inside'
+                                    }
+                                ],
+                                series: [{
+                                    name: '流量',
+                                    type: 'line',
+                                    data: ya
+                                }]
+                            });
+
+                            var zoomSize = 60;
+                            myChart.on('click', function (params) {
+                                //console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+                                myChart.dispatchAction({
+                                    type: 'dataZoom',
+                                    startValue: xa[Math.max(params.dataIndex - zoomSize / 2, 0)],
+                                    endValue: xa[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+                                });
+                            });
+                        });
+                    </script>
                     <div id="total_chart" style="width: 100%;height: 500px;margin: auto"></div>
                     <script>
                         $(document).ready(function () {
@@ -98,7 +214,7 @@
                             var myChart = echarts.init(document.getElementById('total_chart'));
                             myChart.setOption({
                                 title: {
-                                    text: '{$user->user_name}的{$node->name}流量数据'
+                                    text: '{$node->name}的{$user->user_name}流量数据'
                                 },
                                 tooltip: {
                                     trigger: 'axis',
