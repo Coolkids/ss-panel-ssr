@@ -29,8 +29,15 @@ class UserController extends AdminController
         }else{
             $users = User::paginate(15, ['*'], 'page', $pageNum);
         }
+
+        $echartData = User::hydrateRaw("select user_name, ROUND((u+d)/(1024*1024), 2) as total from `user`");
+
         $users->setPath('/admin/user');
-        return $this->view()->assign('users', $users)->assign('email', $email)->display('admin/user/index.tpl');
+        return $this->view()
+            ->assign('users', $users)
+            ->assign('email', $email)
+            ->assign('echartData', $echartData)
+            ->display('admin/user/index.tpl');
     }
 
     public function edit($request, $response, $args)

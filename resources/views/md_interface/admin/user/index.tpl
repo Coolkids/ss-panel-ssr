@@ -1,5 +1,5 @@
 {include file='admin/main.tpl'}
-
+<script src="/assets/public/js/echarts.min.js"></script>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -51,33 +51,106 @@
                                 <th>操作</th>
                             </tr>
                             {foreach $users as $user}
-                            <tr>
-                                <td>{$user->id}</td>
-                                <td>{$user->g}</td>
-                                <td>{$user->level}</td>
-                                <td>{$user->user_name}</td>
-                                <td>{$user->email}</td>
-                                <td>{$user->port}</td>
-                                <td>{$user->enable}</td>
-                                <td>{$user->method}</td>
-                                <td>{$user->protocol}</td>
-                                <td>{$user->obfs}</td>
-                                <td>{$user->usedUpTraffic()}/{$user->usedDownTraffic()}</td>
-                                <td>{$user->usedTraffic()}/{$user->enableTraffic()}</td>
-                                <td>{$user->user_name}</td>
-                                <td>{$user->lastSsTime()}</td>
-                                {*<td>{$user->lastCheckInTime()}</td>*}
-                                <th>{$user->reg_date}</th>
-                                <th>{$user->reg_ip}</th>
-                                <th>{$user->ref_byUser()->user_name}</th>
-                                <td>
-                                    <a class="btn btn-info btn-sm" href="/admin/user/{$user->id}/edit">编辑</a>
-                                    <a class="btn btn-danger btn-sm" id="delete" value="{$user->id}" href="/admin/user/{$user->id}/delete">删除</a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>{$user->id}</td>
+                                    <td>{$user->g}</td>
+                                    <td>{$user->level}</td>
+                                    <td>{$user->user_name}</td>
+                                    <td>{$user->email}</td>
+                                    <td>{$user->port}</td>
+                                    <td>{$user->enable}</td>
+                                    <td>{$user->method}</td>
+                                    <td>{$user->protocol}</td>
+                                    <td>{$user->obfs}</td>
+                                    <td>{$user->usedUpTraffic()}/{$user->usedDownTraffic()}</td>
+                                    <td>{$user->usedTraffic()}/{$user->enableTraffic()}</td>
+                                    <td>{$user->user_name}</td>
+                                    <td>{$user->lastSsTime()}</td>
+                                    {*<td>{$user->lastCheckInTime()}</td>*}
+                                    <th>{$user->reg_date}</th>
+                                    <th>{$user->reg_ip}</th>
+                                    <th>{$user->ref_byUser()->user_name}</th>
+                                    <td>
+                                        <a class="btn btn-info btn-sm" href="/admin/user/{$user->id}/edit">编辑</a>
+                                        <a class="btn btn-danger btn-sm" id="delete" value="{$user->id}"
+                                           href="/admin/user/{$user->id}/delete">删除</a>
+                                    </td>
+                                </tr>
                             {/foreach}
                         </table>
-                        {$users->appends(['email' => $email])->render()}
+                        <div class="row">
+                            <!-- on column -->
+                            <div class="col-md-6">
+                                <div id="bar_chart" style="width: 100%;height: 500px;margin: auto"></div>
+                                <script>
+                                    $(document).ready(function () {
+                                        var xa = [];
+                                        var ya = [];
+                                        var data = {$echartData};
+                                        for (var o in data) {
+                                            xa.push(data[o].user_name);
+                                            ya.push(data[o].total);
+                                        }
+
+                                        var myChart = echarts.init(document.getElementById('total_chart'));
+                                        myChart.setOption({
+                                            title: {
+                                                text: '用户使用柱状图'
+                                            },
+                                            tooltip : {
+                                                trigger: 'axis',
+                                                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                                                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                                                }
+                                            },
+                                            grid: {
+                                                left: '3%',
+                                                right: '4%',
+                                                bottom: '3%',
+                                                containLabel: true
+                                            },
+                                            xAxis: {
+                                                type: 'category',
+                                                splitLine: {
+                                                    show: false
+                                                },
+                                                data: xa
+                                            },
+                                            yAxis: {
+                                                type: 'value',
+                                                splitLine: {
+                                                    show: false
+                                                }
+                                            },
+                                            dataZoom: [
+                                                {
+                                                    type: 'inside'
+                                                }
+                                            ],
+                                            series: [{
+                                                name: '流量',
+                                                type: 'bar',
+                                                barWidth: '60%',
+                                                data: ya
+                                            }]
+                                        });
+
+                                        var zoomSize = 6;
+                                        myChart.on('click', function (params) {
+                                            //console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+                                            myChart.dispatchAction({
+                                                type: 'dataZoom',
+                                                startValue: xa[Math.max(params.dataIndex - zoomSize / 2, 0)],
+                                                endValue: xa[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+                                            });
+                                        });
+                                    });
+                                </script>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="per_chart" style="width: 100%;height: 500px;margin: auto"></div>
+                            </div>
+                        </div>
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div>
@@ -88,50 +161,51 @@
 
 
 <script>
-    $(document).ready(function(){
-        function delete2(){
+    $(document).ready(function () {
+        function delete2() {
             $.ajax({
-                type:"DELETE",
-                url:"/admin/user/",
-                dataType:"json",
-                data:{
+                type: "DELETE",
+                url: "/admin/user/",
+                dataType: "json",
+                data: {
                     name: $("#name").val()
                 },
-                success:function(data){
-                    if(data.ret){
+                success: function (data) {
+                    if (data.ret) {
                         $("#msg-error").hide(100);
                         $("#msg-success").show(100);
                         $("#msg-success-p").html(data.msg);
                         window.setTimeout("location.href='/admin/user'", 2000);
-                    }else{
+                    } else {
                         $("#msg-error").hide(10);
                         $("#msg-error").show(100);
                         $("#msg-error-p").html(data.msg);
                     }
                 },
-                error:function(jqXHR){
+                error: function (jqXHR) {
                     $("#msg-error").hide(10);
                     $("#msg-error").show(100);
-                    $("#msg-error-p").html("发生错误："+jqXHR.status);
+                    $("#msg-error-p").html("发生错误：" + jqXHR.status);
                 }
             });
         }
-        $("html").keydown(function(event){
-            if(event.keyCode==13){
+
+        $("html").keydown(function (event) {
+            if (event.keyCode == 13) {
                 login();
             }
         });
-        $("#delete").click(function(){
+        $("#delete").click(function () {
             delete2();
         });
-        $("#ok-close").click(function(){
+        $("#ok-close").click(function () {
             $("#msg-success").hide(100);
         });
-        $("#error-close").click(function(){
+        $("#error-close").click(function () {
             $("#msg-error").hide(100);
         });
-        $("#query").click(function(){
-            window.location.href = '/admin/user?email='+$("#email").val();
+        $("#query").click(function () {
+            window.location.href = '/admin/user?email=' + $("#email").val();
         });
         $(".pagination").addClass("pagination-sm");
     });
