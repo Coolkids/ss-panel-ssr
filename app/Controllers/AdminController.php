@@ -10,8 +10,8 @@ use App\Models\PassCode;
 use App\Models\TrafficLog;
 use App\Services\Analytics;
 use App\Services\DbConfig;
-use DB;
 use App\Utils\Tools;
+use Illuminate\Support\Facades\DB;
 
 /**
  *  Admin Controller
@@ -168,33 +168,20 @@ class AdminController extends UserController
             $nodeId = $request->getQueryParams()["nodeId"];
         }
         $userId = "";
-        $echartData = DB::table('user_traffic_log')->select(DB::raw('SUM(u)+SUM(d) as total, log_time'))->groupBy('log_time')->orderBy('log_time', 'asc')->get();
+        $echartData = DB::select("SELECT SUM(u)+SUM(d) as total, log_time FROM `user_traffic_log` group by log_time ORDER BY log_time");
         if (isset($request->getQueryParams()["userId"])) {
             $userId = $request->getQueryParams()["userId"];
         }
         $logs = TrafficLog::orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
         if($nodeId!=""&&$userId!=""){
             $logs = TrafficLog::where('user_id', '=', $userId)->where('node_id', '=', $nodeId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
-            $echartData = DB::table('user_traffic_log')
-                ->select(DB::raw('SUM(u)+SUM(d) as total, log_time'))
-                ->where('user_id', '=', $userId)
-                ->where('node_id', '=', $nodeId)
-                ->groupBy('log_time')
-                ->orderBy('log_time', 'asc')->get();
+            $echartData = DB::select("SELECT SUM(u)+SUM(d) as total, log_time FROM user_traffic_log where user_id=? and node_id=? group by log_time ORDER BY log_time", [$userId, $nodeId]);
         }elseif ($nodeId!=""&&$userId==""){
             $logs = TrafficLog::where('node_id', '=', $nodeId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
-            $echartData = DB::table('user_traffic_log')
-                ->select(DB::raw('SUM(u)+SUM(d) as total, log_time'))
-                ->where('node_id', '=', $nodeId)
-                ->groupBy('log_time')
-                ->orderBy('log_time', 'asc')->get();
+            $echartData = DB::select("SELECT SUM(u)+SUM(d) as total, log_time FROM user_traffic_log where node_id=? group by log_time ORDER BY log_time", [$nodeId]);
         }elseif ($nodeId==""&&$userId!=""){
             $logs = TrafficLog::where('user_id', '=', $userId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
-            $echartData = DB::table('user_traffic_log')
-                ->select(DB::raw('SUM(u)+SUM(d) as total, log_time'))
-                ->where('user_id', '=', $userId)
-                ->groupBy('log_time')
-                ->orderBy('log_time', 'asc')->get();
+            $echartData = DB::select("SELECT SUM(u)+SUM(d) as total, log_time FROM user_traffic_log where user_id=? group by log_time ORDER BY log_time", [$userId]);
         }
 
         $nodes = Node::all();
