@@ -122,13 +122,26 @@
                                         show: false
                                     }
                                 },
+                                dataZoom: [
+                                    {
+                                        type: 'inside'
+                                    }
+                                ],
                                 series: [{
                                     name: '流量MB',
                                     type: 'line',
-                                    showSymbol: false,
-                                    hoverAnimation: false,
                                     data: ya
                                 }]
+                            });
+
+                            var zoomSize = 6;
+                            myChart.on('click', function (params) {
+                                //console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+                                myChart.dispatchAction({
+                                    type: 'dataZoom',
+                                    startValue: xa[Math.max(params.dataIndex - zoomSize / 2, 0)],
+                                    endValue: xa[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+                                });
                             });
                         });
                     </script>
