@@ -94,7 +94,7 @@
                             var ya = [];
                             var data = JSON.parse("{$echartData}");
                             for (var o in data) {
-                                xa.push(data[o].log_time);
+                                xa.push(new Date(data[o].log_time).toLocaleString());
                                 ya.push(data[o].total);
                             }
 
@@ -110,7 +110,7 @@
                                     }
                                 },
                                 xAxis: {
-                                    type: 'time',
+                                    type: 'category',
                                     splitLine: {
                                         show: false
                                     },
