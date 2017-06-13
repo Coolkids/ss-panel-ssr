@@ -89,6 +89,14 @@
 
                     </div>
                     <script>
+                        var xa = [];
+                        var ya = [];
+                        var data = JSON.parse({$echartData});
+                        for(var o in data){
+                            xa.push(data[o].log_time);
+                            ya.push(data[o].total)
+                        }
+
                         var myChart = echarts.init(document.getElementById('total_chart'));
                         myChart.setOption({
                             title: {
@@ -108,11 +116,11 @@
                                 type: 'time',
                                 splitLine: {
                                     show: false
-                                }
+                                },
+                                data:xa
                             },
                             yAxis: {
                                 type: 'value',
-                                boundaryGap: [0, '100%'],
                                 splitLine: {
                                     show: false
                                 }
@@ -122,7 +130,7 @@
                                 type: 'line',
                                 showSymbol: false,
                                 hoverAnimation: false,
-                                data: {$echartData}
+                                data:ya
                             }]});
                     </script>
                 </div><!-- /.box-body -->
