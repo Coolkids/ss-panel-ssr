@@ -81,7 +81,6 @@
                         <div class="row">
                             <!-- on column -->
                             <div class="col-md-6">
-                                {{– … –}}
                                 <div id="bar_chart" style="width: 100%;height: 500px;margin: auto"></div>
                                 <script>
                                     $(document).ready(function () {
