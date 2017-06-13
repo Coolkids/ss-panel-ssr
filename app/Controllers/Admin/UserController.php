@@ -30,7 +30,7 @@ class UserController extends AdminController
             $users = User::paginate(15, ['*'], 'page', $pageNum);
         }
 
-        $echartData = User::hydrateRaw("select user_name as name_t, ROUND((u+d)/(1024*1024), 2) as total from `user`");
+        $echartData = User::hydrateRaw("select user_name as `name`, ROUND((u+d)/(1024*1024), 2) as `value` from `user`");
 
         $users->setPath('/admin/user');
         return $this->view()
