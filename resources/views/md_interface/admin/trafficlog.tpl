@@ -128,7 +128,7 @@
                                     }
                                 ],
                                 series: [{
-                                    name: '流量MB',
+                                    name: '流量',
                                     type: 'line',
                                     data: ya
                                 }]
