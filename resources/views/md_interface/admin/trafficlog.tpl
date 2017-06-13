@@ -89,49 +89,52 @@
 
                     </div>
                     <script>
-                        var xa = [];
-                        var ya = [];
-                        var data = JSON.parse({$echartData});
-                        for(var o in data){
-                            xa.push(data[o].log_time);
-                            ya.push(data[o].total)
-                        }
+                        $(document).ready(function () {
+                            var xa = [];
+                            var ya = [];
+                            var data = JSON.parse({$echartData});
+                            for (var o in data) {
+                                xa.push(data[o].log_time);
+                                ya.push(data[o].total);
+                            }
 
-                        var myChart = echarts.init(document.getElementById('total_chart'));
-                        myChart.setOption({
-                            title: {
-                                text: '流量数据'
-                            },
-                            tooltip: {
-                                trigger: 'axis',
-                                formatter: function (params) {
-                                    var date = new Date(params.log_time);
-                                    return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' : ' + params.total;
+                            var myChart = echarts.init(document.getElementById('total_chart'));
+                            myChart.setOption({
+                                title: {
+                                    text: '流量数据'
                                 },
-                                axisPointer: {
-                                    animation: false
-                                }
-                            },
-                            xAxis: {
-                                type: 'time',
-                                splitLine: {
-                                    show: false
+                                tooltip: {
+                                    trigger: 'axis',
+                                    formatter: function (params) {
+                                        var date = new Date(params.log_time);
+                                        return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' : ' + params.total;
+                                    },
+                                    axisPointer: {
+                                        animation: false
+                                    }
                                 },
-                                data:xa
-                            },
-                            yAxis: {
-                                type: 'value',
-                                splitLine: {
-                                    show: false
-                                }
-                            },
-                            series: [{
-                                name: '流量',
-                                type: 'line',
-                                showSymbol: false,
-                                hoverAnimation: false,
-                                data:ya
-                            }]});
+                                xAxis: {
+                                    type: 'time',
+                                    splitLine: {
+                                        show: false
+                                    },
+                                    data: xa
+                                },
+                                yAxis: {
+                                    type: 'value',
+                                    splitLine: {
+                                        show: false
+                                    }
+                                },
+                                series: [{
+                                    name: '流量',
+                                    type: 'line',
+                                    showSymbol: false,
+                                    hoverAnimation: false,
+                                    data: ya
+                                }]
+                            });
+                        });
                     </script>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
