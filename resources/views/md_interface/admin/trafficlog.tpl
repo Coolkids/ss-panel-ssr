@@ -186,6 +186,7 @@
                                 series: [{
                                     name: '流量',
                                     type: 'line',
+                                    smooth: true,
                                     data: ya
                                 }]
                             });
@@ -244,6 +245,7 @@
                                 series: [{
                                     name: '流量',
                                     type: 'line',
+                                    smooth: true,
                                     data: ya
                                 }]
                             });
