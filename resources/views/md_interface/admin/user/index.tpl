@@ -145,7 +145,6 @@
                                 </script>
                             </div>
                             <div class="col-md-6">
-                                {{a}}
                                 <div id="per_chart" style="width: 100%;height: 500px;margin: auto"></div>
                                 <script>
                                     $(document).ready(function () {
