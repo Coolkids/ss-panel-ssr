@@ -1,5 +1,5 @@
 {include file='admin/main.tpl'}
-
+<script src="/assets/public/js/echarts.min.js"></script>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -84,7 +84,8 @@
                             </tr>
                         {/foreach}
                     </table>
-                    {$logs->appends(['userId' => $userId, 'nodeId' => $nodeId])->render()}
+                    {*{$logs->appends(['userId' => $userId, 'nodeId' => $nodeId])->render()}*}
+                    alert({$echartData});
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
         </div>

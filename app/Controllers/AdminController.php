@@ -10,6 +10,7 @@ use App\Models\PassCode;
 use App\Models\TrafficLog;
 use App\Services\Analytics;
 use App\Services\DbConfig;
+use DB;
 use App\Utils\Tools;
 
 /**
@@ -167,23 +168,42 @@ class AdminController extends UserController
             $nodeId = $request->getQueryParams()["nodeId"];
         }
         $userId = "";
+        $echartData = DB::table('user_traffic_log')->select(DB::raw('SUM(u)+SUM(d) as total, log_time'))->groupBy('log_time')->orderBy('log_time', 'asc')->get();
         if (isset($request->getQueryParams()["userId"])) {
             $userId = $request->getQueryParams()["userId"];
         }
         $logs = TrafficLog::orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
         if($nodeId!=""&&$userId!=""){
             $logs = TrafficLog::where('user_id', '=', $userId)->where('node_id', '=', $nodeId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
+            $echartData = DB::table('user_traffic_log')
+                ->select(DB::raw('SUM(u)+SUM(d) as total, log_time'))
+                ->where('user_id', '=', $userId)
+                ->where('node_id', '=', $nodeId)
+                ->groupBy('log_time')
+                ->orderBy('log_time', 'asc')->get();
         }elseif ($nodeId!=""&&$userId==""){
             $logs = TrafficLog::where('node_id', '=', $nodeId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
+            $echartData = DB::table('user_traffic_log')
+                ->select(DB::raw('SUM(u)+SUM(d) as total, log_time'))
+                ->where('node_id', '=', $nodeId)
+                ->groupBy('log_time')
+                ->orderBy('log_time', 'asc')->get();
         }elseif ($nodeId==""&&$userId!=""){
             $logs = TrafficLog::where('user_id', '=', $userId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
+            $echartData = DB::table('user_traffic_log')
+                ->select(DB::raw('SUM(u)+SUM(d) as total, log_time'))
+                ->where('user_id', '=', $userId)
+                ->groupBy('log_time')
+                ->orderBy('log_time', 'asc')->get();
         }
 
         $nodes = Node::all();
         $users = User::all();
 
         $logs->setPath('/admin/trafficlog');
-        return $this->view()->assign('userId', $userId)->assign('nodeId', $nodeId)->assign('nodes', $nodes)->assign('users', $users)->assign('logs', $logs)->assign('nodeId', $nodeId)->assign('userId', $userId)->display('admin/trafficlog.tpl');
+        return $this->view()->assign('userId', $userId)->assign('nodeId', $nodeId)->assign('nodes', $nodes)
+            ->assign('users', $users)->assign('logs', $logs)->assign('nodeId', $nodeId)
+            ->assign('userId', $userId)->assign('echartData', $echartData)->display('admin/trafficlog.tpl');
     }
 
     public function config($request, $response, $args)
