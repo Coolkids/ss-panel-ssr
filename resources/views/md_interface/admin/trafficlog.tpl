@@ -110,7 +110,7 @@
                                 }
                             },
                             yAxis: {
-                                type: 'value',
+                                type: 'total',
                                 boundaryGap: [0, '100%'],
                                 splitLine: {
                                     show: false
