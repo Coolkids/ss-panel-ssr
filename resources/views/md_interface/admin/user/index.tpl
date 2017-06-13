@@ -81,6 +81,7 @@
                         <div class="row">
                             <!-- on column -->
                             <div class="col-md-6">
+                                {{{ … }}}
                                 <div id="bar_chart" style="width: 100%;height: 500px;margin: auto"></div>
                                 <script>
                                     $(document).ready(function () {
@@ -94,9 +95,6 @@
 
                                         var myChart = echarts.init(document.getElementById('bar_chart'));
                                         myChart.setOption({
-                                            title: {
-                                                text: '用户使用柱状图'
-                                            },
                                             tooltip : {
                                                 trigger: 'axis',
                                                 axisPointer : {            // 坐标轴指示器，坐标轴触发有效
