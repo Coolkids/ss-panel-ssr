@@ -172,13 +172,13 @@ class AdminController extends UserController
         }
         if($nodeId!=""&&$userId!=""){
             $user_t = User::hydrateRaw("select user_name from `user` where id = ?", [$userId]);
-            $node_t = Node::hydrateRaw("select 'name' from ss_node where id = ?", [$nodeId]);
+            $node_t = Node::hydrateRaw("select `name` from ss_node where id = ?", [$nodeId]);
             $logs = TrafficLog::where('user_id', '=', $userId)->where('node_id', '=', $nodeId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
             $echartData = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, log_time FROM user_traffic_log where user_id=? and node_id=? group by log_time ORDER BY log_time", [$userId, $nodeId]);
             $echartHour = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d %H') as log_time FROM user_traffic_log where user_id=? and node_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d %H') ORDER BY log_time", [$userId, $nodeId]);
             $echartDay = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d') as log_time FROM user_traffic_log where user_id=? and node_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d') ORDER BY log_time", [$userId, $nodeId]);
         }elseif ($nodeId!=""&&$userId==""){
-            $node_t = Node::hydrateRaw("select 'name' from ss_node where id = ?", [$nodeId]);
+            $node_t = Node::hydrateRaw("select `name` from ss_node where id = ?", [$nodeId]);
             $logs = TrafficLog::where('node_id', '=', $nodeId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
             $echartData = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, log_time FROM user_traffic_log where node_id=? group by log_time ORDER BY log_time", [$nodeId]);
             $echartHour = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d %H') as log_time FROM user_traffic_log where node_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d %H') ORDER BY log_time", [$nodeId]);
