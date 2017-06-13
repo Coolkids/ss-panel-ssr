@@ -169,20 +169,19 @@ class AdminController extends UserController
         }
         $userId = "";
         $echartData = TrafficLog::hydrateRaw("SELECT SUM(u)+SUM(d) as total, log_time FROM user_traffic_log group by log_time ORDER BY log_time");
-        //$echartData = TrafficLog::select("SUM(u)+SUM(d) as total, log_time")->get();
         if (isset($request->getQueryParams()["userId"])) {
             $userId = $request->getQueryParams()["userId"];
         }
         $logs = TrafficLog::orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
         if($nodeId!=""&&$userId!=""){
             $logs = TrafficLog::where('user_id', '=', $userId)->where('node_id', '=', $nodeId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
-//            $echartData = DB::select("SELECT SUM(u)+SUM(d) as total, log_time FROM user_traffic_log where user_id=? and node_id=? group by log_time ORDER BY log_time", [$userId, $nodeId]);
+            $echartData = TrafficLog::hydrateRaw("SELECT SUM(u)+SUM(d) as total, log_time FROM user_traffic_log where user_id=? and node_id=? group by log_time ORDER BY log_time", [$userId, $nodeId]);
         }elseif ($nodeId!=""&&$userId==""){
             $logs = TrafficLog::where('node_id', '=', $nodeId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
-//            $echartData = DB::select("SELECT SUM(u)+SUM(d) as total, log_time FROM user_traffic_log where node_id=? group by log_time ORDER BY log_time", [$nodeId]);
+            $echartData = TrafficLog::hydrateRaw("SELECT SUM(u)+SUM(d) as total, log_time FROM user_traffic_log where node_id=? group by log_time ORDER BY log_time", [$nodeId]);
         }elseif ($nodeId==""&&$userId!=""){
             $logs = TrafficLog::where('user_id', '=', $userId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
-//            $echartData = DB::select("SELECT SUM(u)+SUM(d) as total, log_time FROM user_traffic_log where user_id=? group by log_time ORDER BY log_time", [$userId]);
+            $echartData = TrafficLog::hydrateRaw("SELECT SUM(u)+SUM(d) as total, log_time FROM user_traffic_log where user_id=? group by log_time ORDER BY log_time", [$userId]);
         }
 
         $nodes = Node::all();
