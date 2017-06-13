@@ -84,6 +84,7 @@
                             </tr>
                         {/foreach}
                     </table>
+                    alert({$echartData});
                     <div id="total_chart" style="width: 100%;height: 500px;margin: auto">
 
                     </div>
@@ -110,7 +111,7 @@
                                 }
                             },
                             yAxis: {
-                                type: 'total',
+                                type: 'value',
                                 boundaryGap: [0, '100%'],
                                 splitLine: {
                                     show: false
