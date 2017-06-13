@@ -157,13 +157,12 @@
                                         }
 
                                         var myChart = echarts.init(document.getElementById('per_chart'));
-                                        /*myChart.setOption({
+                                        myChart.setOption({
                                             title: {
                                                 text: '用户使用占比'
                                             },
                                             tooltip: {
                                                 trigger: 'item',
-                                                formatter: "{a} <br/>{b}: {c} ({d}%)"
                                             },
                                             legend: {
                                                 orient: 'vertical',
@@ -197,7 +196,7 @@
                                                     data:ya
                                                 }
                                             ]
-                                        });*/
+                                        });
                                     });
                                 </script>
                             </div>
