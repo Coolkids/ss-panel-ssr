@@ -101,7 +101,7 @@
                             var myChart = echarts.init(document.getElementById('total_chart'));
                             myChart.setOption({
                                 title: {
-                                    text: '{$userName} {$nodeName} 流量数据'
+                                    text: '{$userName->user_name} {$nodeName->name} 流量数据'
                                 },
                                 tooltip: {
                                     trigger: 'axis',
