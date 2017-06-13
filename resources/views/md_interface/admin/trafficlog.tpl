@@ -105,10 +105,6 @@
                                 },
                                 tooltip: {
                                     trigger: 'axis',
-                                    formatter: function (params) {
-                                        var date = new Date(params.log_time);
-                                        return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' : ' + params.total;
-                                    },
                                     axisPointer: {
                                         animation: false
                                     }
