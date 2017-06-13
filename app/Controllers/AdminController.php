@@ -170,6 +170,8 @@ class AdminController extends UserController
         if (isset($request->getQueryParams()["userId"])) {
             $userId = $request->getQueryParams()["userId"];
         }
+        $node_t = "全部节点";
+        $user_t = "全部用户";
         if($nodeId!=""&&$userId!=""){
             $user_t = User::hydrateRaw("select user_name from `user` where id = ?", [$userId]);
             $node_t = Node::hydrateRaw("select `name` from ss_node where id = ?", [$nodeId]);
@@ -184,14 +186,12 @@ class AdminController extends UserController
             $echartHour = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d %H') as log_time FROM user_traffic_log where node_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d %H') ORDER BY log_time", [$nodeId]);
             $echartDay = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d') as log_time FROM user_traffic_log where node_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d') ORDER BY log_time", [$nodeId]);
         }elseif ($nodeId==""&&$userId!=""){
-            $user_t = User::select("user_name")->where('id', '=', $userId)->get();
+            $user_t = User::select("user_name")->where('id', $userId)->get();
             $logs = TrafficLog::where('user_id', '=', $userId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
             $echartData = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, log_time FROM user_traffic_log where user_id=? group by log_time ORDER BY log_time", [$userId]);
             $echartHour = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d %H') as log_time FROM user_traffic_log where user_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d %H') ORDER BY log_time", [$userId]);
             $echartDay = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d') as log_time FROM user_traffic_log where user_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d') ORDER BY log_time", [$userId]);
         }else{
-            $node_t = "全部节点";
-            $user_t = "全部用户";
             $echartData = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, log_time FROM user_traffic_log group by log_time ORDER BY log_time");
             $echartHour = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d %H') as log_time FROM user_traffic_log group by FROM_UNIXTIME(log_time, '%Y-%m-%d %H') ORDER BY log_time");
             $echartDay = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d') as log_time FROM user_traffic_log group by FROM_UNIXTIME(log_time, '%Y-%m-%d') ORDER BY log_time");
