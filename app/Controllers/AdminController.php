@@ -168,7 +168,8 @@ class AdminController extends UserController
             $nodeId = $request->getQueryParams()["nodeId"];
         }
         $userId = "";
-        $echartData = DB::select("SELECT SUM(u)+SUM(d) as total, log_time FROM user_traffic_log group by log_time ORDER BY log_time");
+        //$echartData = DB::select("SELECT SUM(u)+SUM(d) as total, log_time FROM user_traffic_log group by log_time ORDER BY log_time");
+        $echartData = TrafficLog::select("SUM(u)+SUM(d) as total, log_time")->get();
         if (isset($request->getQueryParams()["userId"])) {
             $userId = $request->getQueryParams()["userId"];
         }
@@ -190,7 +191,7 @@ class AdminController extends UserController
         $logs->setPath('/admin/trafficlog');
         return $this->view()->assign('userId', $userId)->assign('nodeId', $nodeId)->assign('nodes', $nodes)
             ->assign('users', $users)->assign('logs', $logs)->assign('nodeId', $nodeId)
-//            ->assign('echartData', $echartData)
+            ->assign('echartData', $echartData)
             ->assign('userId', $userId)->display('admin/trafficlog.tpl');
     }
 
