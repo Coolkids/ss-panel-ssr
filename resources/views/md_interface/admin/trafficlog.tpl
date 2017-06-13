@@ -98,7 +98,7 @@
                             var myChart = echarts.init(document.getElementById('day_chart'));
                             myChart.setOption({
                                 title: {
-                                    text: '{$node_t}的{$user_t}日流量数据'
+                                    text: '{$node_t->name}的{$user_t->user_name}日流量数据'
                                 },
                                 tooltip: {
                                     trigger: 'axis',
@@ -156,7 +156,7 @@
                             var myChart = echarts.init(document.getElementById('hour_chart'));
                             myChart.setOption({
                                 title: {
-                                    text: '{$node_t}的{$user_t}小时流量数据'
+                                    text: '{$node_t->name}的{$user_t->user_name}小时流量数据'
                                 },
                                 tooltip: {
                                     trigger: 'axis',
@@ -214,7 +214,7 @@
                             var myChart = echarts.init(document.getElementById('total_chart'));
                             myChart.setOption({
                                 title: {
-                                    text: '{$node_t}的{$user_t}全部流量数据'
+                                    text: '{$node_t->name}的{$user_t->user_name}全部流量数据'
                                 },
                                 tooltip: {
                                     trigger: 'axis',
