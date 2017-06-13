@@ -84,11 +84,7 @@
                             </tr>
                         {/foreach}
                     </table>
-                    {*alert({$echartData});*}
-                    alert({$user->user_name} {$node->name})
-                    <div id="total_chart" style="width: 100%;height: 500px;margin: auto">
-
-                    </div>
+                    <div id="total_chart" style="width: 100%;height: 500px;margin: auto"></div>
                     <script>
                         $(document).ready(function () {
                             var xa = [];
@@ -102,7 +98,7 @@
                             var myChart = echarts.init(document.getElementById('total_chart'));
                             myChart.setOption({
                                 title: {
-                                    text: '{$user->user_name} {$node->name} 流量数据'
+                                    text: '{$user->user_name}的{$node->name}流量数据'
                                 },
                                 tooltip: {
                                     trigger: 'axis',

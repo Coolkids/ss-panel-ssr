@@ -163,12 +163,12 @@ class AdminController extends UserController
             $pageNum = $request->getQueryParams()["page"];
         }
         $nodeId = "";
-        $node_t = "";
+        $node_t = "全部节点";
         if (isset($request->getQueryParams()["nodeId"])) {
             $nodeId = $request->getQueryParams()["nodeId"];
         }
         $userId = "";
-        $user_t = "";
+        $user_t = "全部用户";
         $echartData = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, log_time FROM user_traffic_log group by log_time ORDER BY log_time");
         if (isset($request->getQueryParams()["userId"])) {
             $userId = $request->getQueryParams()["userId"];
