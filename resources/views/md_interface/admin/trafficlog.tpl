@@ -134,7 +134,7 @@
                                 }]
                             });
 
-                            var zoomSize = 6;
+                            var zoomSize = 60;
                             myChart.on('click', function (params) {
                                 //console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
                                 myChart.dispatchAction({
