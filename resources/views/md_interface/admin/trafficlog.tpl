@@ -92,7 +92,7 @@
                         $(document).ready(function () {
                             var xa = [];
                             var ya = [];
-                            var data = JSON.parse({$echartData});
+                            var data = JSON.parse("{$echartData}");
                             for (var o in data) {
                                 xa.push(data[o].log_time);
                                 ya.push(data[o].total);
