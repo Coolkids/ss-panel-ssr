@@ -153,7 +153,7 @@
                                         var data = {$echartData};
                                         for (var o in data) {
                                             xa.push(data[o].name_t);
-                                            ya.push([value:data[o].total, name:data[o].name_t]);
+                                            ya.push(['value':data[o].total, 'name':data[o].name_t]);
                                         }
 
                                         var myChart = echarts.init(document.getElementById('per_chart'));
