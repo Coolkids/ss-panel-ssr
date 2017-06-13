@@ -85,7 +85,7 @@
                         {/foreach}
                     </table>
                     {*alert({$echartData});*}
-                    alert({$userName} {$nodeName})
+                    alert({$user->user_name} {$node->name})
                     <div id="total_chart" style="width: 100%;height: 500px;margin: auto">
 
                     </div>
@@ -102,7 +102,7 @@
                             var myChart = echarts.init(document.getElementById('total_chart'));
                             myChart.setOption({
                                 title: {
-                                    text: '{$userName->user_name} {$nodeName->name} 流量数据'
+                                    text: '{$user->user_name} {$node->name} 流量数据'
                                 },
                                 tooltip: {
                                     trigger: 'axis',

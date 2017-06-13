@@ -163,28 +163,28 @@ class AdminController extends UserController
             $pageNum = $request->getQueryParams()["page"];
         }
         $nodeId = "";
-        $nodeName = "";
+        $node = "";
         if (isset($request->getQueryParams()["nodeId"])) {
             $nodeId = $request->getQueryParams()["nodeId"];
         }
         $userId = "";
-        $userName = "";
+        $user = "";
         $echartData = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, log_time FROM user_traffic_log group by log_time ORDER BY log_time");
         if (isset($request->getQueryParams()["userId"])) {
             $userId = $request->getQueryParams()["userId"];
         }
         $logs = TrafficLog::orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
         if($nodeId!=""&&$userId!=""){
-            $userName = User::where('id', '=', $userId)->get();
-            $nodeName = Node::where('id', '=', $nodeId)->get();
+            $user = User::where('id', '=', $userId)->get();
+            $node = Node::where('id', '=', $nodeId)->get();
             $logs = TrafficLog::where('user_id', '=', $userId)->where('node_id', '=', $nodeId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
             $echartData = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, log_time FROM user_traffic_log where user_id=? and node_id=? group by log_time ORDER BY log_time", [$userId, $nodeId]);
         }elseif ($nodeId!=""&&$userId==""){
-            $nodeName = Node::where('id', '=', $nodeId)->get();
+            $node = Node::where('id', '=', $nodeId)->get();
             $logs = TrafficLog::where('node_id', '=', $nodeId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
             $echartData = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, log_time FROM user_traffic_log where node_id=? group by log_time ORDER BY log_time", [$nodeId]);
         }elseif ($nodeId==""&&$userId!=""){
-            $userName = User::where('id', '=', $userId)->get();
+            $user = User::where('id', '=', $userId)->get();
             $logs = TrafficLog::where('user_id', '=', $userId)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
             $echartData = TrafficLog::hydrateRaw("SELECT (SUM(u)+SUM(d))/(1024*1024) as total, log_time FROM user_traffic_log where user_id=? group by log_time ORDER BY log_time", [$userId]);
         }
@@ -197,7 +197,7 @@ class AdminController extends UserController
             ->assign('userId', $userId)->assign('nodeId', $nodeId)
             ->assign('nodes', $nodes)
             ->assign('users', $users)->assign('logs', $logs)
-            ->assign('nodeName', $nodeName)->assign('userName', $userName)
+            ->assign('node', $node)->assign('user', $user)
             ->assign('echartData', $echartData)
             ->display('admin/trafficlog.tpl');
     }
