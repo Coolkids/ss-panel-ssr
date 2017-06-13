@@ -146,18 +146,18 @@
                             </div>
                             <div class="col-md-6">
                                 <div id="per_chart" style="width: 100%;height: 500px;margin: auto"></div>
-                                {*<script>
+                                <script>
                                     $(document).ready(function () {
                                         var xa = [];
                                         var ya = [];
                                         var data = {$echartData};
                                         for (var o in data) {
                                             xa.push(data[o].name_t);
-                                            //ya.push({value: data[o].total, name: data[o].name_t});
+                                            ya.push({value: data[o].total, name: data[o].name_t});
                                         }
 
                                         var myChart = echarts.init(document.getElementById('per_chart'));
-                                        myChart.setOption({
+                                        /*myChart.setOption({
                                             title: {
                                                 text: '用户使用占比'
                                             },
@@ -196,9 +196,9 @@
                                                     data:ya
                                                 }
                                             ]
-                                        });
+                                        });*/
                                     });
-                                </script>*}
+                                </script>
                             </div>
                         </div>
                     </div><!-- /.box-body -->
