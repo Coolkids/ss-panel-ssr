@@ -122,7 +122,7 @@
                                 showSymbol: false,
                                 hoverAnimation: false,
                                 data: {$echartData}
-                            }]);
+                            }]});
                     </script>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
