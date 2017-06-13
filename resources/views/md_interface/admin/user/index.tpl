@@ -146,7 +146,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div id="per_chart" style="width: 100%;height: 500px;margin: auto"></div>
-                                <script>
+                                {*<script>
                                     $(document).ready(function () {
                                         var xa = [];
                                         var ya = [];
@@ -199,7 +199,7 @@
                                             ]
                                         });
                                     });
-                                </script>
+                                </script>*}
                             </div>
                         </div>
                     </div><!-- /.box-body -->
