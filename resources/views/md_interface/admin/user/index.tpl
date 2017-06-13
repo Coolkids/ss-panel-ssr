@@ -88,8 +88,8 @@
                                         var ya = [];
                                         var data = {$echartData};
                                         for (var o in data) {
-                                            xa.push(data[o].name_t);
-                                            ya.push(data[o].total);
+                                            xa.push(data[o].name);
+                                            ya.push(data[o].value);
                                         }
 
                                         var myChart = echarts.init(document.getElementById('bar_chart'));
@@ -145,19 +145,14 @@
                                 </script>
                             </div>
                             <div class="col-md-6">
-                                {!! 123  !!}
                                 <div id="per_chart" style="width: 100%;height: 500px;margin: auto"></div>
                                 <script>
-
                                     $(document).ready(function () {
                                         var xa = [];
-                                        var ya = [];
                                         var data = {$echartData};
                                         for (var o in data) {
-                                            xa.push(data[o].name_t);
-                                            ya.push();
+                                            xa.push(data[o].name);
                                         }
-
                                         var myChart = echarts.init(document.getElementById('per_chart'));
                                         myChart.setOption({
                                             title: {
@@ -195,7 +190,7 @@
                                                             show: false
                                                         }
                                                     },
-                                                    data:ya
+                                                    data:data
                                                 }
                                             ]
                                         });
