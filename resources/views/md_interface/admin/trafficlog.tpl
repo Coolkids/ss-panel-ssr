@@ -84,7 +84,7 @@
                             </tr>
                         {/foreach}
                     </table>
-                    alert({$echartData});
+                    {*alert({$echartData});*}
                     <div id="total_chart" style="width: 100%;height: 500px;margin: auto">
 
                     </div>
