@@ -92,7 +92,7 @@
                         $(document).ready(function () {
                             var xa = [];
                             var ya = [];
-                            var data = JSON.parse("{$echartData}");
+                            var data = {$echartData};
                             for (var o in data) {
                                 xa.push(new Date(data[o].log_time).toLocaleString());
                                 ya.push(data[o].total);
