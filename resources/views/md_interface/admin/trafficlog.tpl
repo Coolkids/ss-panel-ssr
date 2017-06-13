@@ -84,8 +84,46 @@
                             </tr>
                         {/foreach}
                     </table>
-                    {*{$logs->appends(['userId' => $userId, 'nodeId' => $nodeId])->render()}*}
-                    alert({$echartData});
+                    <div id="total_chart" style="width: 100%;height: 500px;margin: auto">
+
+                    </div>
+                    <script>
+                        var myChart = echarts.init(document.getElementById('total_chart'));
+                        myChart.setOption({
+                            title: {
+                                text: '流量数据'
+                            },
+                            tooltip: {
+                                trigger: 'axis',
+                                formatter: function (params) {
+                                    var date = new Date(params.log_time);
+                                    return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' : ' + params.total;
+                                },
+                                axisPointer: {
+                                    animation: false
+                                }
+                            },
+                            xAxis: {
+                                type: 'time',
+                                splitLine: {
+                                    show: false
+                                }
+                            },
+                            yAxis: {
+                                type: 'value',
+                                boundaryGap: [0, '100%'],
+                                splitLine: {
+                                    show: false
+                                }
+                            },
+                            series: [{
+                                name: '流量',
+                                type: 'line',
+                                showSymbol: false,
+                                hoverAnimation: false,
+                                data: {$echartData}
+                            }]);
+                    </script>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
         </div>
