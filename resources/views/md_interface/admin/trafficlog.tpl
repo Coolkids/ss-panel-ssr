@@ -103,11 +103,13 @@
                                 tooltip: {
                                     trigger: 'axis',
                                     axisPointer: {
-                                        animation: false
+                                        animation: true,
+                                        type: 'cross'
                                     },
                                     {literal}
                                     formatter: "{b}<br/>{a}:{c}MB"
                                     {/literal}
+
                                 },
                                 xAxis: {
                                     type: 'category',
@@ -165,7 +167,8 @@
                                 tooltip: {
                                     trigger: 'axis',
                                     axisPointer: {
-                                        animation: false
+                                        animation: true,
+                                        type: 'cross'
                                     },
                                     {literal}
                                     formatter: "{b}<br/>{a}:{c}MB"
@@ -227,7 +230,8 @@
                                 tooltip: {
                                     trigger: 'axis',
                                     axisPointer: {
-                                        animation: false
+                                        animation: true,
+                                        type: 'cross'
                                     },
                                     {literal}
                                     formatter: "{b}<br/>{a}:{c}MB"
