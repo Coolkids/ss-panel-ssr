@@ -141,7 +141,7 @@
                                             <tr>
                                                 <td colspan="2">
                                                     <div id="day_chart"
-                                                         style="width: 100%;height: 300px;margin: auto"></div>
+                                                         style="width: 100%;height: 250px;margin: auto"></div>
                                                     <script>
                                                         $(document).ready(function () {
                                                             var xa = [];
@@ -208,7 +208,7 @@
                                             <tr>
                                                 <td colspan="2">
                                                     <div id="hour_chart"
-                                                         style="width: 100%;height: 300px;margin: auto"></div>
+                                                         style="width: 100%;height: 250px;margin: auto"></div>
                                                     <script>
                                                         $(document).ready(function () {
                                                             var xa = [];
@@ -275,7 +275,7 @@
                                             <tr>
                                                 <td colspan="2">
                                                     <div id="data_chart"
-                                                         style="width: 100%;height: 300px;margin: auto"></div>
+                                                         style="width: 100%;height: 250px;margin: auto"></div>
                                                     <script>
                                                         $(document).ready(function () {
                                                             var xa = [];
