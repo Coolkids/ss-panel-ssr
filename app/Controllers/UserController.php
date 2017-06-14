@@ -54,9 +54,9 @@ class UserController extends BaseController
                         ->orWhere("g","=",0);})
                     ->where("level","<=",$this->user->level)->get();
 
-        $echartData = TrafficLog::hydrateRaw("SELECT ROUND((SUM(u)+SUM(d))/(1024*1024), 2) as total, log_time FROM user_traffic_log where user_id=? group by log_time ORDER BY log_time", [$this->user->attributes['id']]);
-        $echartHour = TrafficLog::hydrateRaw("SELECT ROUND((SUM(u)+SUM(d))/(1024*1024), 2) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d %H') as log_time FROM user_traffic_log where user_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d %H') ORDER BY log_time", [$this->user->attributes['id']]);
-        $echartDay = TrafficLog::hydrateRaw("SELECT ROUND((SUM(u)+SUM(d))/(1024*1024), 2) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d') as log_time FROM user_traffic_log where user_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d') ORDER BY log_time", [$this->user->attributes['id']]);
+        $echartData = TrafficLog::hydrateRaw("SELECT ROUND((SUM(u)+SUM(d))/(1024*1024), 2) as total, log_time FROM user_traffic_log where user_id=? group by log_time ORDER BY log_time", [$this->user->id]);
+        $echartHour = TrafficLog::hydrateRaw("SELECT ROUND((SUM(u)+SUM(d))/(1024*1024), 2) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d %H') as log_time FROM user_traffic_log where user_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d %H') ORDER BY log_time", [$this->user->id]);
+        $echartDay = TrafficLog::hydrateRaw("SELECT ROUND((SUM(u)+SUM(d))/(1024*1024), 2) as total, FROM_UNIXTIME(log_time, '%Y-%m-%d') as log_time FROM user_traffic_log where user_id=? group by FROM_UNIXTIME(log_time, '%Y-%m-%d') ORDER BY log_time", [$this->user->id]);
 
         return $this->view()
                     ->assign('user_index_msg', $user_index_msg)
