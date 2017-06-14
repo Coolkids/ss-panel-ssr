@@ -157,7 +157,7 @@
                                                 {literal}
                                                 formatter: "{a} <br/>{b}: {c} ({d}%)"
                                                 {/literal}
-                                            }
+                                            },
                                             legend: {
                                                 orient: 'vertical',
                                                 x: 'left',
