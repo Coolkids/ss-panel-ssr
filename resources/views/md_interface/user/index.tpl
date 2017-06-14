@@ -1,6 +1,7 @@
 {include file='user/header.tpl'}
 <script src=" /assets/public/js/jquery.qrcode.min.js "></script>
 <script src=" /assets/public/js/ping.js "></script>
+<script src="/assets/public/js/echarts.min.js"></script>
 <body class="page-pink">
 <header class="header header-pink header-waterfall ui-header">
     <ul class="nav nav-list pull-left">
@@ -138,6 +139,207 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td colspan="2">
+                                                    <div id="day_chart"
+                                                         style="width: 100%;height: 150px;margin: auto"></div>
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            var xa = [];
+                                                            var ya = [];
+                                                            var data = {$echartDay};
+                                                            for (var o in data) {
+                                                                xa.push(data[o].log_time);
+                                                                ya.push(data[o].total);
+                                                            }
+
+                                                            var myChart = echarts.init(document.getElementById('day_chart'));
+                                                            myChart.setOption({
+                                                                title: {
+                                                                    text: '{$user->user_name}的日流量数据'
+                                                                },
+                                                                tooltip: {
+                                                                    trigger: 'axis',
+                                                                    axisPointer: {
+                                                                        animation: false
+                                                                    },
+                                                                    {literal}
+                                                                    formatter: "{a}:{c}MB"
+                                                                    {/literal}
+                                                                },
+                                                                xAxis: {
+                                                                    type: 'category',
+                                                                    splitLine: {
+                                                                        show: false
+                                                                    },
+                                                                    data: xa
+                                                                },
+                                                                yAxis: {
+                                                                    type: 'value',
+                                                                    splitLine: {
+                                                                        show: false
+                                                                    }
+                                                                },
+                                                                dataZoom: [
+                                                                    {
+                                                                        type: 'inside'
+                                                                    }
+                                                                ],
+                                                                series: [{
+                                                                    name: '流量',
+                                                                    type: 'line',
+                                                                    smooth: true,
+                                                                    data: ya
+                                                                }]
+                                                            });
+
+                                                            var zoomSize = 60;
+                                                            myChart.on('click', function (params) {
+                                                                //console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+                                                                myChart.dispatchAction({
+                                                                    type: 'dataZoom',
+                                                                    startValue: xa[Math.max(params.dataIndex - zoomSize / 2, 0)],
+                                                                    endValue: xa[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+                                                                });
+                                                            });
+                                                        });
+                                                    </script>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <div id="hour_chart"
+                                                         style="width: 100%;height: 150px;margin: auto"></div>
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            var xa = [];
+                                                            var ya = [];
+                                                            var data = {$echartHour};
+                                                            for (var o in data) {
+                                                                xa.push(data[o].log_time);
+                                                                ya.push(data[o].total);
+                                                            }
+
+                                                            var myChart = echarts.init(document.getElementById('hour_chart'));
+                                                            myChart.setOption({
+                                                                title: {
+                                                                    text: '{$user->user_name}的日流量数据'
+                                                                },
+                                                                tooltip: {
+                                                                    trigger: 'axis',
+                                                                    axisPointer: {
+                                                                        animation: false
+                                                                    },
+                                                                    {literal}
+                                                                    formatter: "{a}:{c}MB"
+                                                                    {/literal}
+                                                                },
+                                                                xAxis: {
+                                                                    type: 'category',
+                                                                    splitLine: {
+                                                                        show: false
+                                                                    },
+                                                                    data: xa
+                                                                },
+                                                                yAxis: {
+                                                                    type: 'value',
+                                                                    splitLine: {
+                                                                        show: false
+                                                                    }
+                                                                },
+                                                                dataZoom: [
+                                                                    {
+                                                                        type: 'inside'
+                                                                    }
+                                                                ],
+                                                                series: [{
+                                                                    name: '流量',
+                                                                    type: 'line',
+                                                                    smooth: true,
+                                                                    data: ya
+                                                                }]
+                                                            });
+
+                                                            var zoomSize = 60;
+                                                            myChart.on('click', function (params) {
+                                                                //console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+                                                                myChart.dispatchAction({
+                                                                    type: 'dataZoom',
+                                                                    startValue: xa[Math.max(params.dataIndex - zoomSize / 2, 0)],
+                                                                    endValue: xa[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+                                                                });
+                                                            });
+                                                        });
+                                                    </script>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <div id="data_chart"
+                                                         style="width: 100%;height: 150px;margin: auto"></div>
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            var xa = [];
+                                                            var ya = [];
+                                                            var data = {$echartData};
+                                                            for (var o in data) {
+                                                                xa.push(data[o].log_time);
+                                                                ya.push(data[o].total);
+                                                            }
+
+                                                            var myChart = echarts.init(document.getElementById('data_chart'));
+                                                            myChart.setOption({
+                                                                title: {
+                                                                    text: '{$user->user_name}的日流量数据'
+                                                                },
+                                                                tooltip: {
+                                                                    trigger: 'axis',
+                                                                    axisPointer: {
+                                                                        animation: false
+                                                                    },
+                                                                    {literal}
+                                                                    formatter: "{a}:{c}MB"
+                                                                    {/literal}
+                                                                },
+                                                                xAxis: {
+                                                                    type: 'category',
+                                                                    splitLine: {
+                                                                        show: false
+                                                                    },
+                                                                    data: xa
+                                                                },
+                                                                yAxis: {
+                                                                    type: 'value',
+                                                                    splitLine: {
+                                                                        show: false
+                                                                    }
+                                                                },
+                                                                dataZoom: [
+                                                                    {
+                                                                        type: 'inside'
+                                                                    }
+                                                                ],
+                                                                series: [{
+                                                                    name: '流量',
+                                                                    type: 'line',
+                                                                    smooth: true,
+                                                                    data: ya
+                                                                }]
+                                                            });
+
+                                                            var zoomSize = 60;
+                                                            myChart.on('click', function (params) {
+                                                                //console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+                                                                myChart.dispatchAction({
+                                                                    type: 'dataZoom',
+                                                                    startValue: xa[Math.max(params.dataIndex - zoomSize / 2, 0)],
+                                                                    endValue: xa[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+                                                                });
+                                                            });
+                                                        });
+                                                    </script>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td>上次签到时间:</td>
                                                 <td>{$user->lastCheckInTime()}</td>
                                             </tr>
@@ -196,12 +398,12 @@
                                                                     <script>
                                                                         $(document).ready(function () {
                                                                             var p = new Ping();
-                                                                            getLag_{$node->id} = function(){
-                                                                                p.ping("http://{$node->server}", function(data) {
-                                                                                    $("#lag_{$node->id}").text(data+"ms");
+                                                                            getLag_{$node->id} = function () {
+                                                                                p.ping("http://{$node->server}", function (data) {
+                                                                                    $("#lag_{$node->id}").text(data + "ms");
                                                                                 });
                                                                             };
-                                                                            setInterval("getLag_{$node->id}()",5000);
+                                                                            setInterval("getLag_{$node->id}()", 15000);
                                                                         })
                                                                     </script>
                                                                     <tr>
@@ -250,7 +452,7 @@
 </main>
 <footer class="ui-footer">
     <div class="container">
-            <p>SS-Panel-SSR <a href="/user/tutorial">使用教程</a></p>
+        <p>SS-Panel-SSR <a href="/user/tutorial">使用教程</a></p>
     </div>
 </footer>
 <div class="fbtn-container">
@@ -578,6 +780,7 @@
                         <!--option value="plain">plain(无混淆)</option-->
                         <option value="http_simple">http_simple</option>
                         <option value="tls1.2_ticket_auth">tls1.2_ticket_auth</option>
+                        <option value="tls1.2_ticket_fastauth">tls1.2_ticket_fastauth</option>
                     </select>
                 </div>
             </div>
