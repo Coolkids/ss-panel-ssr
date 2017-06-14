@@ -282,7 +282,7 @@
                                                             var ya = [];
                                                             var data = {$echartData};
                                                             for (var o in data) {
-                                                                xa.push(data[o].log_time);
+                                                                xa.push(new Date(data[o].log_time*1000).toLocaleString());
                                                                 ya.push(data[o].total);
                                                             }
 
