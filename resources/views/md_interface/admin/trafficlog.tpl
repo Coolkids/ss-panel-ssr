@@ -106,7 +106,7 @@
                                         animation: false
                                     },
                                     {literal}
-                                    formatter: "{a}:{c}MB"
+                                    formatter: "{b}<br/>{a}:{c}MB"
                                     {/literal}
                                 },
                                 xAxis: {
@@ -166,7 +166,10 @@
                                     trigger: 'axis',
                                     axisPointer: {
                                         animation: false
-                                    }
+                                    },
+                                    {literal}
+                                    formatter: "{b}<br/>{a}:{c}MB"
+                                    {/literal}
                                 },
                                 xAxis: {
                                     type: 'category',
@@ -225,7 +228,10 @@
                                     trigger: 'axis',
                                     axisPointer: {
                                         animation: false
-                                    }
+                                    },
+                                    {literal}
+                                    formatter: "{b}<br/>{a}:{c}MB"
+                                    {/literal}
                                 },
                                 xAxis: {
                                     type: 'category',
