@@ -142,7 +142,6 @@
                                 </script>
                             </div>
                             <div class="col-md-6">
-                                {" true "}
                                 <div id="per_chart" style="width: 100%;height: 500px;margin: auto"></div>
                                 <script>
                                     $(document).ready(function () {
@@ -155,6 +154,8 @@
                                         myChart.setOption({
                                             tooltip: {
                                                 trigger: 'item',
+                                                formatter: {"{a} <br/>{b}: {c} ({d}%)"}
+                                            }
                                             legend: {
                                                 orient: 'vertical',
                                                 x: 'left',

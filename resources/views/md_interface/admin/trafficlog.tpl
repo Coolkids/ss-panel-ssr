@@ -104,7 +104,8 @@
                                     trigger: 'axis',
                                     axisPointer: {
                                         animation: false
-                                    }
+                                    },
+                                    formatter: {"{a}:{c}MB"}
                                 },
                                 xAxis: {
                                     type: 'category',
