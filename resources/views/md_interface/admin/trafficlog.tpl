@@ -105,7 +105,9 @@
                                     axisPointer: {
                                         animation: false
                                     },
-                                    formatter: {"{a}:{c}MB"}
+                                    {literal}
+                                    formatter: "{a}:{c}MB"
+                                    {/literal}
                                 },
                                 xAxis: {
                                     type: 'category',

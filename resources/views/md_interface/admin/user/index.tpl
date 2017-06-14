@@ -154,7 +154,9 @@
                                         myChart.setOption({
                                             tooltip: {
                                                 trigger: 'item',
-                                                formatter: {"{a} <br/>{b}: {c} ({d}%)"}
+                                                {literal}
+                                                formatter: "{a} <br/>{b}: {c} ({d}%)"
+                                                {/literal}
                                             }
                                             legend: {
                                                 orient: 'vertical',
