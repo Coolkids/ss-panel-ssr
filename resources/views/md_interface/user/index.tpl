@@ -163,7 +163,7 @@
                                                                         animation: false
                                                                     },
                                                                     {literal}
-                                                                    formatter: "{a}:{c}MB"
+                                                                    formatter: "{b}<br/>{a}:{c}MB"
                                                                     {/literal}
                                                                 },
                                                                 xAxis: {
@@ -230,7 +230,7 @@
                                                                         animation: false
                                                                     },
                                                                     {literal}
-                                                                    formatter: "{a}:{c}MB"
+                                                                    formatter: "{b}<br/>{a}:{c}MB"
                                                                     {/literal}
                                                                 },
                                                                 xAxis: {
@@ -297,7 +297,7 @@
                                                                         animation: false
                                                                     },
                                                                     {literal}
-                                                                    formatter: "{a}:{c}MB"
+                                                                    formatter: "{b}<br/>{a}:{c}MB"
                                                                     {/literal}
                                                                 },
                                                                 xAxis: {
