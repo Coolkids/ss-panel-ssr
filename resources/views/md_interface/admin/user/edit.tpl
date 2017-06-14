@@ -165,6 +165,7 @@
                                                 <option value="plain">plain(无混淆)</option>
                                                 <option value="http_simple">http_simple</option>
                                                 <option value="tls1.2_ticket_auth">tls1.2_ticket_auth</option>
+                                                <option value="tls1.2_ticket_fastauth">tls1.2_ticket_fastauth</option>
                                             </select>
                                         </div>
                                     </div>
@@ -180,7 +181,6 @@
                                             <div class="input-group">
                                                 <input class="form-control" id="transfer_enable" type="number"
                                                        value="{$user->enableTrafficInGB()}">
-
                                                 <div class="input-group-addon">GiB</div>
                                             </div>
                                         </div>
