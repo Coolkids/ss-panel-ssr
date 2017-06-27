@@ -60,8 +60,8 @@
                     {$logs->appends(['userId' => $userId, 'nodeId' => $nodeId])->render()}
                     <table class="table table-hover">
                         <tr>
-                            <th>ID</th>
-                            <th>用户</th>
+                            {*<th>ID</th>*}
+                            <th>用户ID</th>
                             <th>用户名</th>
                             <th>节点ID</th>
                             <th>使用节点</th>
@@ -72,7 +72,7 @@
                         </tr>
                         {foreach $logs as $log}
                             <tr>
-                                <td>#{$log->id}</td>
+                                {*<td>#{$log->id}</td>*}
                                 <td>{$log->user_id}</td>
                                 <td>{$log->user()->user_name}</td>
                                 <td>{$log->node_id}</td>
