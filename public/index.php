@@ -4,7 +4,7 @@
 define('PUBLIC_PATH', __DIR__);
 
 // Bootstrap
-require '../bootstrap/app.php';
+require PUBLIC_PATH . '/../bootstrap/app.php';
 
 // Build Slim App
 $app = require BASE_PATH . '/app/routes.php';
