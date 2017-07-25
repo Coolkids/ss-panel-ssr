@@ -224,7 +224,9 @@ class Tools
     }
 	
     public static function base64_url_encode($input) {
-	return strtr(base64_encode($input), '+/', '-_');
+        $data = strtr(base64_encode($input), '+/', '-_');
+        $data = str_replace(array('+','/','='),array('-','_',''),$data);
+	    return $data;
     }
     public static function base64_url_decode($input) {
 		return base64_decode(strtr($input, '-_', '+/'));
