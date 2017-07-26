@@ -64,8 +64,8 @@
                                         $("#datetimepicker").datetimepicker({
                                             format: 'yyyy-mm-dd',
                                             autoclose: true,
-                                            todayBtn: true,
-                                            minView: 1,
+                                            todayBtn: false,
+                                            minView: "day",
                                             todayHighlight: true,
                                             language: "zh-cn"
                                         });
