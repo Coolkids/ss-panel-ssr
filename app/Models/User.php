@@ -243,6 +243,6 @@ class User extends Model
             }
             return "并没有付过款";
         }
-        return $payment;
+        return $payment[0]->payment_date;
     }
 }
