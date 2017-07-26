@@ -227,6 +227,6 @@ class User extends Model
         if(empty($payment)){
             return "并没有付过款";
         }
-        return $payment->payDate();
+        return $payment;
     }
 }
