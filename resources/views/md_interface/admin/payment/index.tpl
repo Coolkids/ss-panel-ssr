@@ -67,7 +67,7 @@
 <script>
     $(document).ready(function () {
         $("#query").click(function () {
-            window.location.href = '/admin/user?email=' + $("#email").val();
+            window.location.href = '/admin/payment?email=' + $("#email").val();
         });
         $("html").keydown(function (event) {
             if (event.keyCode == 13) {
