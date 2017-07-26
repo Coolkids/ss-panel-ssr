@@ -57,17 +57,17 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">付款日期</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control form_datetime" id="datetimepicker" value="{$user->payment(true)}" readonly>
+                                            <input class="form-control" id="datetimepicker" value="{$user->payment(true)}" readonly>
                                         </div>
                                     </div>
                                     <script>
                                         $("#datetimepicker").datetimepicker({
                                             format: 'yyyy-mm-dd',
                                             autoclose: true,
-                                            todayBtn: false,
-                                            minView: "day",
+                                            todayBtn: true,
+                                            minView: "month",
                                             todayHighlight: true,
-                                            language: "zh-cn"
+                                            language: "zh-CN"
                                         });
                                     </script>
                                 </fieldset>
