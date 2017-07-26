@@ -93,7 +93,7 @@
         function submit() {
             $.ajax({
                 type: "PUT",
-                url: "/admin/user/{$user->id}",
+                url: "/admin/payment/{$user->id}",
                 dataType: "json",
                 data: {
                     paymentDate: $("#datetimepicker").val()
