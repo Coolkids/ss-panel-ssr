@@ -7,8 +7,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            用户付款编辑<br><h3>用户名:{$user->user_name}&nbsp;用户ID:{$user->id}<</h3>
-            <small>Edit User Payment</small>
+            用户付款编辑<small>Edit User Payment</small>
+            <br><h4>用户名:{$user->user_name}&nbsp;用户ID:{$user->id}</h4>
         </h1>
     </section>
 
@@ -49,8 +49,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">付款日期</label>
-                                        <div class='input-group date' id='datetimepicker'>
-                                            <input type='text' class="form-control" value="{$user->payment()}"/>
+                                        <div class='col-sm-9 input-group date'>
+                                            <input type='text' class="form-control" value="{$user->payment()}" id='datetimepicker'/>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
