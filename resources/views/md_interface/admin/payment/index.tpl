@@ -44,7 +44,7 @@
                                     <td>{$user->user_name}</td>
                                     <td>{$user->email}</td>
                                     <td>{$user->port}</td>
-                                    <td>{$user->enable==1?正常:停用}</td>
+                                    <td>{$user->enable}==1?正常:停用</td>
                                     <th>{$user->reg_date}</th>
                                     <th>{$user->payment()}</th>
                                     <td>
