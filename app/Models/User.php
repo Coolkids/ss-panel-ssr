@@ -224,7 +224,7 @@ class User extends Model
     public function payment()
     {
         $payment = UserPayment::where('user_id', $this->attributes['id'])->get();
-        if(empty($payment)){
+        if(empty($payment)||count($payment)==0){
             return "并没有付过款";
         }
         return $payment;
