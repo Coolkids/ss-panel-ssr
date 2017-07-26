@@ -46,7 +46,7 @@
                                     <td>{$user->port}</td>
                                     <td>{$user->enable}</td>
                                     <th>{$user->reg_date}</th>
-                                    <th>{$user->payment()->payDate()}</th>
+                                    <th>{$user->payment()->payment_date}</th>
                                     <td>
                                         <a class="btn btn-info btn-sm" href="/admin/userpayment/{$user->id}/edit">编辑</a>
                                         <a class="btn btn-danger btn-sm" id="delete" value="{$user->id}"

@@ -50,7 +50,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">付款日期</label>
                                         <div class='input-group date' id='datetimepicker'>
-                                            <input type='text' class="form-control" value="{$user->payment->payDate()}"/>
+                                            <input type='text' class="form-control" value="{$user->payment()->payment_date}"/>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
