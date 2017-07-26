@@ -223,6 +223,10 @@ class User extends Model
 
     public function payment()
     {
-        return UserPayment::where('user_id', $this->attributes['id'])->get();
+        $payment = UserPayment::where('user_id', $this->attributes['id'])->get();
+        if($payment == null){
+            return "并没有付过款";
+        }
+        return $payment->payDate();
     }
 }
