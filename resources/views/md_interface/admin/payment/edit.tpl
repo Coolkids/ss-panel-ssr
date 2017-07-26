@@ -1,8 +1,7 @@
 {include file='admin/main.tpl'}
-<script src="/assets/public/js/moment.js"></script>
-<script src="/assets/public/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/assets/public/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
 <script src="/assets/public/js/bootstrap-datetimepicker.zh-CN.js"></script>
-<link href="/assets/public/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="/assets/public/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type='text/css'/>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -58,7 +57,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">付款日期</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control" id="datetimepicker" value="{$user->payment(true)}" readonly>
+                                            <input class="form-control form_datetime" id="datetimepicker" value="{$user->payment(true)}" readonly>
                                         </div>
                                     </div>
                                     <script>
