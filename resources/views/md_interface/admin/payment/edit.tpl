@@ -65,7 +65,7 @@
                                             format: 'yyyy-mm-dd',
                                             autoclose: true,
                                             todayBtn: true,
-                                            minView: "day",
+                                            minView: 1,
                                             todayHighlight: true,
                                             language: "zh-cn"
                                         });
