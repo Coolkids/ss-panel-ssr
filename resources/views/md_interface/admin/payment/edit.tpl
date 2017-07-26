@@ -61,6 +61,16 @@
                                             <input class="form-control" id="datetimepicker" value="{$user->payment(true)}" readonly>
                                         </div>
                                     </div>
+                                    <script>
+                                        $("#datetimepicker").datetimepicker({
+                                            format: 'yyyy-mm-dd',
+                                            autoclose: true,
+                                            todayBtn: true,
+                                            minView: "day",
+                                            todayHighlight: true,
+                                            language: "zh-cn"
+                                        });
+                                    </script>
                                 </fieldset>
                             </div>
                         </div>
@@ -108,15 +118,6 @@
                 }
             });
         }
-
-        $('#datetimepicker').datetimepicker({
-            format: 'yyyy-mm-dd',
-            autoclose: true,
-            todayBtn: true,
-            minView: "day",
-            todayHighlight: true,
-            language: "zh-cn"
-        });
 
         $("html").keydown(function (event) {
             if (event.keyCode == 13) {
