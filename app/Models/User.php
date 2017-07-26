@@ -223,6 +223,6 @@ class User extends Model
 
     public function payment()
     {
-        return UserPayment::find($this->attributes['id']);
+        return UserPayment::where('user_id', $this->attributes['id'])->get();
     }
 }
