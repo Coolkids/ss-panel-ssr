@@ -58,7 +58,7 @@
                                     <td>{$user->user_name}</td>
                                     <td>{$user->email}</td>
                                     <td>{$user->port}</td>
-                                    <td>{$user->enable}</td>
+                                    <td>{$user->enableText()}</td>
                                     <td>{$user->method}</td>
                                     <td>{$user->protocol}</td>
                                     <td>{$user->obfs}</td>

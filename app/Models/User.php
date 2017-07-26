@@ -221,6 +221,19 @@ class User extends Model
         return User::find($uid);
     }
 
+    public function enableText()
+    {
+        $enable = $this->attributes['enable'];
+        if($enable==1){
+            return "正常";
+        }else if($enable==0){
+            return "禁用";
+        }else{
+            return "不知道什么喵";
+        }
+
+    }
+
     public function payment()
     {
         $payment = UserPayment::where('user_id', $this->attributes['id'])->get();
