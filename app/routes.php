@@ -108,6 +108,9 @@ $app->group('/admin', function () {
     $this->put('/user/{id}', 'App\Controllers\Admin\UserController:update');
     $this->delete('/user/{id}', 'App\Controllers\Admin\UserController:delete');
     $this->get('/user/{id}/delete', 'App\Controllers\Admin\UserController:deleteGet');
+    $this->get('/payment', 'App\Controllers\Admin\UserController:paymentIndex');
+    $this->get('/payment/{id}/edit', 'App\Controllers\Admin\UserController:paymentEdit');
+    $this->put('/payment/{id}', 'App\Controllers\Admin\UserController:paymentUpdate');
 
     // Test
     $this->get('/test/sendmail', 'App\Controllers\Admin\TestController:sendMail');

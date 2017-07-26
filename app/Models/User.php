@@ -221,4 +221,8 @@ class User extends Model
         return User::find($uid);
     }
 
+    public function payment()
+    {
+        return UserPayment::find($this->attributes['id']);
+    }
 }

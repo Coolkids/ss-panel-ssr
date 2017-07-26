@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\AdminController;
 use App\Models\TrafficLog;
 use App\Models\User;
+use App\Models\UserPayment;
 use App\Utils\Hash;
 use App\Utils\Tools;
 
@@ -132,5 +133,60 @@ class UserController extends AdminController
             $rs['msg'] = "清空用户流量失败";
             return $response->getBody()->write(json_encode($rs));
         }
+    }
+
+    public function paymentIndex($request, $response, $args){
+        $pageNum = 1;
+        if (isset($request->getQueryParams()["page"])) {
+            $pageNum = $request->getQueryParams()["page"];
+        }
+        $email = null;
+        if (isset($request->getQueryParams()["email"])) {
+            $email = $request->getQueryParams()["email"];
+            if($email==""){
+                $email = null;
+            }
+        }
+        $users = null;
+        if($email != null){
+            $users = User::where('email', 'like', '%' . $email . '%')->paginate(15, ['*'], 'page', $pageNum);
+        }else{
+            $users = User::paginate(15, ['*'], 'page', $pageNum);
+        }
+
+        $users->setPath('/admin/user');
+        return $this->view()
+            ->assign('users', $users)
+            ->assign('email', $email)
+            ->display('admin/payment/index.tpl');
+    }
+
+    public function paymentEdit($request, $response, $args)
+    {
+        $id = $args['id'];
+        $user = User::find($id);
+        if ($user == null) {
+
+        }
+        return $this->view()->assign('user', $user)->display('admin/payment/edit.tpl');
+    }
+
+    public function paymentUpdate($request, $response, $args)
+    {
+        $id = $args['id'];
+        $date = $request->getParam('paymentDate');
+        $userpayment = new UserPayment();
+
+        $userpayment->user_id = $id;
+        $userpayment->payment_date = $date;
+
+        if (!$userpayment->save()) {
+            $rs['ret'] = 0;
+            $rs['msg'] = "修改失败";
+            return $response->getBody()->write(json_encode($rs));
+        }
+        $rs['ret'] = 1;
+        $rs['msg'] = "修改成功";
+        return $response->getBody()->write(json_encode($rs));
     }
 }
