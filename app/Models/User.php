@@ -234,10 +234,13 @@ class User extends Model
 
     }
 
-    public function payment()
+    public function payment($blank = false)
     {
         $payment = UserPayment::where('user_id', $this->attributes['id'])->get();
         if(empty($payment)||count($payment)==0){
+            if($blank){
+                return "";
+            }
             return "并没有付过款";
         }
         return $payment;

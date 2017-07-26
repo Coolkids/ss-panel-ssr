@@ -1,6 +1,7 @@
 {include file='admin/main.tpl'}
 <script src="/assets/public/js/moment.js"></script>
 <script src="/assets/public/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/assets/public/js/bootstrap-datetimepicker.zh-CN.js"></script>
 <link href="/assets/public/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -41,6 +42,13 @@
                                 <fieldset class="col-sm-6">
                                     <legend>帐号信息</legend>
                                     <div class="form-group">
+                                        <label class="col-sm-3 control-label">用户名</label>
+
+                                        <div class="col-sm-9">
+                                            <input class="form-control" id="user_name" type="email" value="{$user->user_name}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="col-sm-3 control-label">邮箱</label>
 
                                         <div class="col-sm-9">
@@ -50,10 +58,11 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">付款日期</label>
                                         <div class='col-sm-9 input-group date'>
-                                            <input type='text' class="form-control" value="{$user->payment()}" id='datetimepicker'/>
+                                            <input class="form-control" value="{$user->payment(true)}"/>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
+                                            <input type="hidden" id="dtp_input1" value="" /><br/>
                                         </div>
                                     </div>
                                 </fieldset>
