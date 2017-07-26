@@ -176,14 +176,14 @@ class UserController extends AdminController
         $id = $args['id'];
         $date = $request->getParam('paymentDate');
 
-        $data = UserPayment::find($id);
+        $data = UserPayment::where('user_id', $id)->get();
 
         $userpayment = new UserPayment();
 
         $userpayment->user_id = $id;
         $userpayment->payment_date = $date;
 
-        if ($data == null) {
+        if(empty($data)||count($data)==0){
             if (!$userpayment->save()) {
                 $rs['ret'] = 0;
                 $rs['msg'] = "修改失败";
