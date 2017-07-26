@@ -190,7 +190,7 @@ class UserController extends AdminController
                 return $response->getBody()->write(json_encode($rs));
             }
         }else{
-            if (!UserPayment::where('user_id', $id)->update("payment_date", $date)) {
+            if (!UserPayment::where('user_id', $id)->update(['payment_date' == $date])) {
                 $rs['ret'] = 0;
                 $rs['msg'] = "修改失败";
                 return $response->getBody()->write(json_encode($rs));
