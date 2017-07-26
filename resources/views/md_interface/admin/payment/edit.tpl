@@ -45,7 +45,7 @@
                                         <label class="col-sm-3 control-label">用户名</label>
 
                                         <div class="col-sm-9">
-                                            <input class="form-control" id="user_name" type="email" value="{$user->user_name}" readonly>
+                                            <input class="form-control" id="user_name" value="{$user->user_name}" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -57,12 +57,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">付款日期</label>
-                                        <div class='col-sm-9 input-group date'>
-                                            <input class="form-control" value="{$user->payment(true)}"/>
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
-                                            <input type="hidden" id="dtp_input1" value="" /><br/>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" id="datetimepicker" value="{$user->payment(true)}" readonly>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -113,9 +109,10 @@
             });
         }
 
-        $('#datetimepicker2').datetimepicker({
-            format: 'YYYY-MM-DD hh:mm',
-            locale: moment.locale('zh-cn')
+        $('#datetimepicker').datetimepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayBtn: true
         });
 
         $("html").keydown(function (event) {
