@@ -5,7 +5,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            用户编辑 用户名:{$user->user_name} 用户ID:{$user->id} 
+            用户编辑<br><h3>用户名:{$user->user_name}&nbsp;用户ID:{$user->id} </h3>
             <small>Edit User</small>
         </h1>
     </section>
