@@ -176,25 +176,17 @@ class UserController extends AdminController
         $id = $args['id'];
         $date = $request->getParam('paymentDate');
 
-        $data = UserPayment::where('user_id', $id)->get();
-
-        $userpayment = new UserPayment();
-
-        $userpayment->user_id = $id;
+        $userpayment = UserPayment::find($id);
+        if($userpayment==null){
+            $userpayment = new UserPayment();
+            $userpayment->id=$id;
+        }
         $userpayment->payment_date = $date;
 
-        if(empty($data)||count($data)==0){
-            if (!$userpayment->save()) {
-                $rs['ret'] = 0;
-                $rs['msg'] = "修改失败";
-                return $response->getBody()->write(json_encode($rs));
-            }
-        }else{
-            if (!UserPayment::where('user_id', $id)->update(['payment_date' == $date])) {
-                $rs['ret'] = 0;
-                $rs['msg'] = "修改失败";
-                return $response->getBody()->write(json_encode($rs));
-            }
+        if (!$userpayment->save()) {
+            $rs['ret'] = 0;
+            $rs['msg'] = "修改失败";
+            return $response->getBody()->write(json_encode($rs));
         }
 
         $rs['ret'] = 1;

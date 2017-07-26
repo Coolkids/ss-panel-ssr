@@ -192,7 +192,7 @@ CREATE TABLE `sp_email_verify` (
 
 DROP TABLE IF EXISTS `user_payment`;
 CREATE TABLE `user_payment` (
-  `user_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `payment_date` datetime DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

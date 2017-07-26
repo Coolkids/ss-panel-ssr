@@ -236,13 +236,13 @@ class User extends Model
 
     public function payment($blank = null)
     {
-        $payment = UserPayment::where('user_id', $this->attributes['id'])->get();
-        if(empty($payment)||count($payment)==0){
+        $payment = UserPayment::find($this->attributes['id']);
+        if($payment==null){
             if(isset($blank)){
                 return "";
             }
             return "并没有付过款";
         }
-        return $payment[0]->payment_date;
+        return $payment->payment_date;
     }
 }
