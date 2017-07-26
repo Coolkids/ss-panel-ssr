@@ -112,7 +112,10 @@
         $('#datetimepicker').datetimepicker({
             format: 'yyyy-mm-dd',
             autoclose: true,
-            todayBtn: true
+            todayBtn: true,
+            minView: "day",
+            todayHighlight: true,
+            language: "zh-cn"
         });
 
         $("html").keydown(function (event) {
