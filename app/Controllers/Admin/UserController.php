@@ -26,9 +26,9 @@ class UserController extends AdminController
         }
         $users = null;
         if($email != null){
-            $users = User::where('email', 'like', '%' . $email . '%')->paginate(15, ['*'], 'page', $pageNum);
+            $users = User::where('email', 'like', '%' . $email . '%')->paginate(30, ['*'], 'page', $pageNum);
         }else{
-            $users = User::paginate(15, ['*'], 'page', $pageNum);
+            $users = User::paginate(30, ['*'], 'page', $pageNum);
         }
 
         $echartData = User::hydrateRaw("select user_name as `name`, ROUND((u+d)/(1024*1024), 2) as `value` from `user`");
@@ -149,9 +149,9 @@ class UserController extends AdminController
         }
         $users = null;
         if($email != null){
-            $users = User::where('email', 'like', '%' . $email . '%')->paginate(15, ['*'], 'page', $pageNum);
+            $users = User::where('email', 'like', '%' . $email . '%')->paginate(30, ['*'], 'page', $pageNum);
         }else{
-            $users = User::paginate(15, ['*'], 'page', $pageNum);
+            $users = User::paginate(30, ['*'], 'page', $pageNum);
         }
 
         $users->setPath('/admin/payment');
