@@ -154,7 +154,7 @@ class UserController extends AdminController
             $users = User::paginate(15, ['*'], 'page', $pageNum);
         }
 
-        $users->setPath('/admin/user');
+        $users->setPath('/admin/payment');
         return $this->view()
             ->assign('users', $users)
             ->assign('email', $email)
