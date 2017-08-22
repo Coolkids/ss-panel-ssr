@@ -73,7 +73,7 @@
                                         <li><img src="../assets/md-interface/images/tutorial/03.png"></li>
                                         <li>这样屏幕上就会出现二维码, 千万别点关闭, 也不要用其他窗口遮住这个二维码</li>
                                         <li>下载windows客户端 记得在新窗口中打开<a
-                                                    href="https://github.com/shadowsocksr/shadowsocksr-csharp/releases">下载地址</a>
+                                                    href="https://github.com/Coolkids/shadowsocksr-csharp/releases/">下载地址</a>
                                         </li>
                                         <li>在网页中找到下图的红色框框的标记</li>
                                         <li><img src="../assets/md-interface/images/tutorial/windows/01.jpg"></li>
