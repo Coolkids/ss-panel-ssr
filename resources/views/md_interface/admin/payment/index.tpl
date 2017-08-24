@@ -42,7 +42,7 @@
                             </tr>
                             {foreach $users as $user}
                                 <tr>
-                                    <td><input type="checkbox" class="userList" id="{$user->id}" value="{$user->id}-{$user->user_name}"></td>
+                                    <td><input type="checkbox" class="userList" id="{$user->id}" value="{$user->id}-{$user->user_name}" onclick="doList()"></td>
                                     <td>{$user->id}</td>
                                     <td>{$user->user_name}</td>
                                     <td>{$user->email}</td>
@@ -65,7 +65,7 @@
 
                     </div>
                     <div class="col-xs-6">
-                        <button class="btn btn-info" id="edits">查询</button>
+                        <button class="btn btn-info" id="edits">提交</button>
                     </div>
                 </div>
             </div>
@@ -78,9 +78,9 @@
 <script>
     function doList(){
         $("#selectIds").empty();
-        var htmlText = "<p>已经选中:<br>";
-        var ids = "<p>ID:";
-        var names = "<p>用户名:";
+        var htmlText = "<p>已经选中:<br><ul class=\"list-unstyled\">";
+        var ids = "<li>ID:";
+        var names = "<li>用户名:";
         $(".userList").each(function () {
             if($(this).is(":checked")==true){
                 var val = $(this).val().split("-");
@@ -88,9 +88,9 @@
                 names += ("<span>&nbsp;" + val[1] + "&nbsp;</span>");
             }
         });
-        ids += "</p>";
-        names += "</p>";
-        htmlText += ids + "<br>" + names + "</p>";
+        ids += "</li>";
+        names += "</li>";
+        htmlText += ids + names + "</p>";
         $("#selectIds").append(htmlText);
     }
     $(document).ready(function () {
