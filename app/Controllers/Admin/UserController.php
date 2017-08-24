@@ -158,10 +158,10 @@ class UserController extends AdminController
         }elseif($type == "1"){
             $sql = $sql . " and month(b.payment_date)=month(now()) ";
         }
-        //$sql = $sql . " limit ". $pageIndex .",30";
+        $sql = $sql . " limit ". $pageIndex .",30";
 
         $users = User::hydrateRaw($sql, [$email]);
-        //$users = array_map('get_object_vars', $users);
+
         if(count($users)==0){
             $users = User::paginate(30, ['*'], 'page', $pageNum);
         }
