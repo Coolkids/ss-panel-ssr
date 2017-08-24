@@ -193,4 +193,43 @@ class UserController extends AdminController
         $rs['msg'] = "修改成功";
         return $response->getBody()->write(json_encode($rs));
     }
+
+    public function paymentUpdateGET($request, $response, $args)
+    {
+        $id = $args['id'];
+        $date = date('Y-m-d', time()) ;
+
+        $userpayment = UserPayment::find($id);
+        if($userpayment==null){
+            $userpayment = new UserPayment();
+            $userpayment->id=$id;
+        }
+        $userpayment->payment_date = $date;
+
+        $userpayment->save();
+
+        $pageNum = 1;
+        if (isset($request->getQueryParams()["page"])) {
+            $pageNum = $request->getQueryParams()["page"];
+        }
+        $email = null;
+        if (isset($request->getQueryParams()["email"])) {
+            $email = $request->getQueryParams()["email"];
+            if($email==""){
+                $email = null;
+            }
+        }
+        $users = null;
+        if($email != null){
+            $users = User::where('email', 'like', '%' . $email . '%')->paginate(30, ['*'], 'page', $pageNum);
+        }else{
+            $users = User::paginate(30, ['*'], 'page', $pageNum);
+        }
+
+        $users->setPath('/admin/payment');
+        return $this->view()
+            ->assign('users', $users)
+            ->assign('email', $email)
+            ->display('admin/payment/index.tpl');
+    }
 }

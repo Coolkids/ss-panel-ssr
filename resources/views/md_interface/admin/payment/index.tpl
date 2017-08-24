@@ -53,6 +53,7 @@
                                     <th>{$user->payment()}</th>
                                     <th>{$user->lastpayment()}</th>
                                     <td>
+                                        <a class="btn btn-info btn-sm" href="/admin/payment/{$user->id}/payed">付款</a>
                                         <a class="btn btn-info btn-sm" href="/admin/payment/{$user->id}/edit">编辑</a>
                                         <a class="btn btn-danger btn-sm" id="delete" value="{$user->id}"
                                            href="/admin/user/{$user->id}/delete">删除用户</a>
