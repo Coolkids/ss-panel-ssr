@@ -17,7 +17,7 @@
                     <div class="box-body table-responsive no-padding">
                         <div class="row">
                             <div class="col-xs-6">
-                                {$users->appends(['email' => $email])->render()}
+                                {$users->appends(['email' => $email, 'type' => $type])->render()}
                             </div>
                             <div class="col-xs-6 form-inline pagination">
                                 <div class="form-group">
