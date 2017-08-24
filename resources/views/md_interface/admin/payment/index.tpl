@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            付款记录{$users}
+            付款记录{json_encode($users)}
             <small>User Payment</small>
             {$users2}
 
