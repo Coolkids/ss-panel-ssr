@@ -103,6 +103,7 @@
         names += "</li>";
         htmlText += ids + names + "</p>";
         $("#selectIds").append(htmlText);
+
     }
     $(document).ready(function () {
         $("#query").click(function () {
@@ -156,6 +157,11 @@
                     ids.push(parseInt(val));
                 }
             });
+            if(ids.length===0){
+                $("#msg-error").hide(10);
+                $("#msg-error").show(100);
+                $("#msg-error-p").html("悟空别闹：<br> 你根本没选用户嘛");
+            }
             $.ajax({
                 type: "POST",
                 url: "/admin/payment/payeds",
