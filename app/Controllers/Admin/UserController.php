@@ -170,6 +170,7 @@ class UserController extends AdminController
             ->assign('users', $users)
             ->assign('email', $email)
             ->assign('type', $type)
+            ->assign('sql', $sql)
             ->display('admin/payment/index.tpl');
     }
 
