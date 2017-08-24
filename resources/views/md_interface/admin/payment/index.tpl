@@ -77,6 +77,7 @@
 
 <script>
     function doList(){
+        $("#selectIds").removeAll();
         var htmlText = "<p>";
         $(".userList").each(function () {
             if($(this).is(":checked")){
@@ -84,7 +85,7 @@
             }
         });
         htmlText += "</p>";
-        $("#selectIds").html(htmlText);
+        $("#selectIds").append(htmlText);
     }
     $(document).ready(function () {
         $("#query").click(function () {
