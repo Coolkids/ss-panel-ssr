@@ -161,10 +161,10 @@ class UserController extends AdminController
         $sql = $sql . " limit ". $pageIndex .",30";
 
         $users = User::hydrateRaw($sql);
-
-        if(count($users)==0){
+        $users = array_map('get_object_vars', $users);
+        /*if(count($users)==0){
             $users = User::paginate(30, ['*'], 'page', $pageNum);
-        }
+        }*/
         $users->setPath('/admin/payment');
         return $this->view()
             ->assign('users', $users)
