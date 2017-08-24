@@ -243,7 +243,7 @@ class User extends Model
             }
             return "并没有付过款";
         }
-        return substr($payment->payment_date,0,7);
+        return substr($payment->payment_date,0,10);
     }
 
     public function lastpayment()
