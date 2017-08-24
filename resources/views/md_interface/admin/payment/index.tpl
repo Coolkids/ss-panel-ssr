@@ -88,7 +88,7 @@
         $("#userListAll").click(function () {
             var isCheck = $(this).is(":checked");
             $(".userList").each(function () {
-                $(this).attr("checked", isCheck);
+                $(this).prop("checked", isCheck);
             })
         });
         $(".pagination").addClass("pagination-sm");
