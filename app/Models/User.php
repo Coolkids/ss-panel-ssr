@@ -245,4 +245,18 @@ class User extends Model
         }
         return $payment->payment_date;
     }
+
+    public function lastpayment()
+    {
+        $payment = UserPayment::find($this->attributes['id']);
+        if($payment==null){
+            return "并没有付过款";
+        }
+        $dat = $payment->payment_date;
+        if(date('Ym', $dat) == date('Ym')) {
+            return '下月已付';
+        }else{
+            return '下月未付';
+        }
+    }
 }

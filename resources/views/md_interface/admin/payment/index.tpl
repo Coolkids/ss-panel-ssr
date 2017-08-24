@@ -38,6 +38,7 @@
                                 <th>状态</th>
                                 <th>最后在线时间</th>
                                 <th>最后付款时间</th>
+                                <th>下月是否已付</th>
                                 <th>操作</th>
                             </tr>
                             {foreach $users as $user}
@@ -50,6 +51,7 @@
                                     <td>{$user->enableText()}</td>
                                     <th>{$user->lastSsTime()}</th>
                                     <th>{$user->payment()}</th>
+                                    <th>{$user->lastpayment()}</th>
                                     <td>
                                         <a class="btn btn-info btn-sm" href="/admin/payment/{$user->id}/edit">编辑</a>
                                         <a class="btn btn-danger btn-sm" id="delete" value="{$user->id}"
