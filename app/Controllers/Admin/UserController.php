@@ -150,7 +150,7 @@ class UserController extends AdminController
         }
 
         $pageIndex = ($pageNum-1)*30;
-        $sql = "SELECT a.* FROM `user` as a LEFT JOIN `user_payment` as b on a.id=b.id where a.email like '%?%' ";
+        $sql = "SELECT a.* FROM `user` as a LEFT JOIN `user_payment` as b on a.id=b.id where a.email like '%" . $email ."%' ";
         if($type == "-1"){
 
         }elseif ($type == "0"){
@@ -160,7 +160,7 @@ class UserController extends AdminController
         }
         $sql = $sql . " limit ". $pageIndex .",30";
 
-        $users = User::hydrateRaw($sql, [$email]);
+        $users = User::hydrateRaw($sql);
 
         if(count($users)==0){
             $users = User::paginate(30, ['*'], 'page', $pageNum);
