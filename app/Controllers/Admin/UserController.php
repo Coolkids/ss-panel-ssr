@@ -162,7 +162,7 @@ class UserController extends AdminController
 
         $users = User::hydrateRaw($sql, [$email]);
 
-        $users->setPath('/admin/payment');
+        //$users->setPath('/admin/payment');
         return $this->view()
             ->assign('users', $users)
             ->assign('email', $email)
