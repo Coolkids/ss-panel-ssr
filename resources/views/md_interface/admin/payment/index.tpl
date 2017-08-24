@@ -86,7 +86,8 @@
             }
         });
         $("#userListAll").click(function () {
-            var isCheck = $("#userListAll").attr("checked");
+            var isCheck = $(this).attr("checked");
+            console.log(isCheck);
             $(".userList").each(function () {
                 $(this).attr("checked", isCheck);
             })
