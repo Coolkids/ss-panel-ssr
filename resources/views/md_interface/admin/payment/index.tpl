@@ -86,10 +86,14 @@
             }
         });
         $("#userListAll").click(function () {
-            var isCheck = $(this).attr("checked");
-            console.log(isCheck);
+            var isCheck = $(this).is(":checked");
             $(".userList").each(function () {
-                $(this).attr("checked", isCheck);
+                if(isCheck){
+                    $(this).attr("checked", isCheck);
+                }else {
+                    $(this).removeAttr("checked");
+                }
+
             })
         });
         $(".pagination").addClass("pagination-sm");
