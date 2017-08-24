@@ -89,7 +89,7 @@
             var isCheck = $(this).is(":checked");
             $(".userList").each(function () {
                 if(isCheck){
-                    $(this).attr("checked", isCheck);
+                    $(this).trigger("click")
                 }else {
                     $(this).removeAttr("checked");
                 }
