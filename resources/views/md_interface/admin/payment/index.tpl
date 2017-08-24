@@ -81,7 +81,7 @@
         var htmlText = "<p>";
         $(".userList").each(function () {
             if($(this).is(":checked")==true){
-                htmlText += ("<span>" + $(this).value() + "</span>");
+                htmlText += ("<span>" + $(this).val() + "</span>");
             }
         });
         htmlText += "</p>";
