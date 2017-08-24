@@ -4,10 +4,10 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            付款记录
+            付款记录{$users}
             <small>User Payment</small>
             {$users2}
-            {$users}
+
         </h1>
     </section>
 
