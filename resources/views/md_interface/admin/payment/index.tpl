@@ -21,6 +21,12 @@
                             </div>
                             <div class="col-xs-6 form-inline pagination">
                                 <div class="form-group">
+                                    <label for="payType" class="control-label">付款状态</label>
+                                    <select id="payType">
+                                        <option value="-1">全部</option>
+                                        <option value="1">已付</option>
+                                        <option value="0">未付</option>
+                                    </select>
                                     <label for="email" class="control-label">用户email</label>
                                     <input class="form-control" id="email" placeholder="请输入邮箱" value="{$email}">
                                 </div>
@@ -98,7 +104,7 @@
     }
     $(document).ready(function () {
         $("#query").click(function () {
-            window.location.href = '/admin/payment?email=' + $("#email").val();
+            window.location.href = '/admin/payment?email=' + $("#email").val() + '&type=' + $("#payType").val();
         });
         $("html").keydown(function (event) {
             if (event.keyCode == 13) {
@@ -112,6 +118,69 @@
             });
             doList();
         });
+        $("#clean").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/admin/payment/cleanall",
+                dataType: "json",
+                data: {
+                    message:"CWlhcovnYTJmlQt2kA74"
+                },
+                success: function (data) {
+                    if (data.ret) {
+                        $("#msg-error").hide(100);
+                        $("#msg-success").show(100);
+                        $("#msg-success-p").html(data.msg);
+                        window.setTimeout("location.href='/admin/payment'", 2000);
+                    } else {
+                        $("#msg-error").hide(10);
+                        $("#msg-error").show(100);
+                        $("#msg-error-p").html(data.msg);
+                    }
+                },
+                error: function (jqXHR) {
+                    $("#msg-error").hide(10);
+                    $("#msg-error").show(100);
+                    $("#msg-error-p").html("发生错误：" + jqXHR.status);
+                }
+            });
+        });
+
+        $("#edits").click(function () {
+            var ids = [];
+            $(".userList").each(function () {
+                if($(this).is(":checked")==true){
+                    var val = $(this).val().split("-")[0];
+                    ids.push(parseInt(val));
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "/admin/payment/payeds",
+                dataType: "json",
+                data: {
+                    ids:ids
+                },
+                success: function (data) {
+                    if (data.ret) {
+                        $("#msg-error").hide(100);
+                        $("#msg-success").show(100);
+                        $("#msg-success-p").html(data.msg);
+                        window.setTimeout("location.href='/admin/payment'", 2000);
+                    } else {
+                        $("#msg-error").hide(10);
+                        $("#msg-error").show(100);
+                        $("#msg-error-p").html(data.msg);
+                    }
+                },
+                error: function (jqXHR) {
+                    $("#msg-error").hide(10);
+                    $("#msg-error").show(100);
+                    $("#msg-error-p").html("发生错误：" + jqXHR.status);
+                }
+            });
+        });
+
         $(".pagination").addClass("pagination-sm");
     });
 

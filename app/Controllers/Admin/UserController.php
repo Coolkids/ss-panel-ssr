@@ -147,11 +147,27 @@ class UserController extends AdminController
                 $email = null;
             }
         }
+        $type = null;
+        if (isset($request->getQueryParams()["type"])) {
+            $type = $request->getQueryParams()["type"];
+            if($type=="-1"){
+                $type = null;
+            }
+        }
+
         $users = null;
         if($email != null){
             $users = User::where('email', 'like', '%' . $email . '%')->paginate(30, ['*'], 'page', $pageNum);
         }else{
-            $users = User::paginate(30, ['*'], 'page', $pageNum);
+            if($type==null){
+                $users = User::paginate(30, ['*'], 'page', $pageNum);
+            }else if($type=="1"){
+                $users = User::hydrateRaw("SELECT a.* FROM `user` as a LEFT JOIN `user_payment` as b on a.id=b.id where a.email like '%?%' and month(b.payment_date)=month(now())", [$email]) -> paginate(30, ['*'], 'page', $pageNum);
+            }else if($type=="0"){
+                $users = User::hydrateRaw("SELECT a.* FROM `user` as a LEFT JOIN `user_payment` as b on a.id=b.id where a.email like '%?%' and (month(b.payment_date)<>month(now()) or b.payment_date is null )", [$email]) -> paginate(30, ['*'], 'page', $pageNum);
+            }else{
+                $users = User::paginate(30, ['*'], 'page', $pageNum);
+            }
         }
 
         $users->setPath('/admin/payment');
@@ -208,28 +224,47 @@ class UserController extends AdminController
 
         $userpayment->save();
 
-        $pageNum = 1;
-        if (isset($request->getQueryParams()["page"])) {
-            $pageNum = $request->getQueryParams()["page"];
-        }
-        $email = null;
-        if (isset($request->getQueryParams()["email"])) {
-            $email = $request->getQueryParams()["email"];
-            if($email==""){
-                $email = null;
-            }
-        }
-        $users = null;
-        if($email != null){
-            $users = User::where('email', 'like', '%' . $email . '%')->paginate(30, ['*'], 'page', $pageNum);
-        }else{
-            $users = User::paginate(30, ['*'], 'page', $pageNum);
-        }
-
-        $users->setPath('/admin/payment');
         return $this->view()
-            ->assign('users', $users)
-            ->assign('email', $email)
             ->display('admin/payment/index.tpl');
     }
+
+    public function paymentClean($request, $response, $args)
+    {
+        $date = $request->getParam('message');
+
+        if($date!="CWlhcovnYTJmlQt2kA74"){
+            $rs['ret'] = 0;
+            $rs['msg'] = "修改失败";
+            return $response->getBody()->write(json_encode($rs));
+        }
+
+        UserPayment::where("id", ">", -99)->delete();
+
+        $rs['ret'] = 1;
+        $rs['msg'] = "修改成功";
+        return $response->getBody()->write(json_encode($rs));
+    }
+
+    public function paymentUsers($request, $response, $args)
+    {
+        $ids = $request->getParam('ids');
+        $date = date('Y-m-d', time()) ;
+
+        foreach ($ids as $id)
+        {
+            $userpayment = UserPayment::find($id);
+            if($userpayment==null){
+                $userpayment = new UserPayment();
+                $userpayment->id=$id;
+            }
+            $userpayment->payment_date = $date;
+
+            $userpayment->save();
+        }
+
+        $rs['ret'] = 1;
+        $rs['msg'] = "修改成功";
+        return $response->getBody()->write(json_encode($rs));
+    }
+
 }

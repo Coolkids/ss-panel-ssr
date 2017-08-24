@@ -112,6 +112,8 @@ $app->group('/admin', function () {
     $this->get('/payment/{id}/edit', 'App\Controllers\Admin\UserController:paymentEdit');
     $this->put('/payment/{id}', 'App\Controllers\Admin\UserController:paymentUpdate');
     $this->get('/payment/{id}/payed', 'App\Controllers\Admin\UserController:paymentUpdateGET');
+    $this->post('/payment/cleanall', 'App\Controllers\Admin\UserController:paymentClean');
+    $this->post('/payment/payeds', 'App\Controllers\Admin\UserController:paymentUsers');
 
     // Test
     $this->get('/test/sendmail', 'App\Controllers\Admin\TestController:sendMail');
