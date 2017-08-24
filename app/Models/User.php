@@ -252,8 +252,9 @@ class User extends Model
         if($payment==null){
             return "并没有付过款";
         }
-        $dat = $payment->payment_date;
-        if(date('Ym', $dat) == date('Ym', time())) {
+        $dat = substr($payment->payment_date,0,7);
+
+        if($dat == date('Y-m')) {
             return '下月已付';
         }else{
             return '下月未付';
