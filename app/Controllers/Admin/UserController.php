@@ -140,40 +140,33 @@ class UserController extends AdminController
         if (isset($request->getQueryParams()["page"])) {
             $pageNum = $request->getQueryParams()["page"];
         }
-        $email = null;
+        $email = "";
         if (isset($request->getQueryParams()["email"])) {
             $email = $request->getQueryParams()["email"];
-            if($email==""){
-                $email = null;
-            }
         }
-        $type = null;
+        $type = "-1";
         if (isset($request->getQueryParams()["type"])) {
             $type = $request->getQueryParams()["type"];
-            if($type=="-1"){
-                $type = null;
-            }
         }
 
-        $users = null;
-        if($email != null){
-            $users = User::where('email', 'like', '%' . $email . '%')->paginate(30, ['*'], 'page', $pageNum);
-        }else{
-            if($type==null){
-                $users = User::paginate(30, ['*'], 'page', $pageNum);
-            }else if($type=="1"){
-                $users = User::hydrate("SELECT a.* FROM `user` as a LEFT JOIN `user_payment` as b on a.id=b.id where a.email like '%?%' and month(b.payment_date)=month(now())", [$email]) -> paginate(30, ['*'], 'page', $pageNum);
-            }else if($type=="0"){
-                $users = User::hydrate("SELECT a.* FROM `user` as a LEFT JOIN `user_payment` as b on a.id=b.id where a.email like '%?%' and (month(b.payment_date)<>month(now()) or b.payment_date is null )", [$email]) -> paginate(30, ['*'], 'page', $pageNum);
-            }else{
-                $users = User::paginate(30, ['*'], 'page', $pageNum);
-            }
+        $pageIndex = ($pageNum-1)*30;
+        $sql = "SELECT a.* FROM `user` as a LEFT JOIN `user_payment` as b on a.id=b.id where a.email like '%?%' ";
+        if($type == "-1"){
+
+        }elseif ($type == "0"){
+            $sql = $sql . " and (month(b.payment_date)<>month(now()) or b.payment_date is null )";
+        }elseif($type == "1"){
+            $sql = $sql . " and month(b.payment_date)=month(now()) ";
         }
+        $sql = $sql . "limit ". $pageIndex .",30";
+
+        $users = User::hydrateRaw($sql, [$email]);
 
         $users->setPath('/admin/payment');
         return $this->view()
             ->assign('users', $users)
             ->assign('email', $email)
+            ->assign('type', $type)
             ->display('admin/payment/index.tpl');
     }
 
