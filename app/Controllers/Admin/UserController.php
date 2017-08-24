@@ -224,8 +224,7 @@ class UserController extends AdminController
 
         $userpayment->save();
 
-        return $this->view()
-            ->display('admin/payment/index.tpl');
+        return $this->paymentIndex($request, $response, $args);
     }
 
     public function paymentClean($request, $response, $args)
