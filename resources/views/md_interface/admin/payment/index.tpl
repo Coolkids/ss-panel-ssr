@@ -104,8 +104,21 @@
         htmlText += ids + names + "</p>";
         $("#selectIds").append(htmlText);
 
+        var ids = [];
+        $(".userList").each(function () {
+            if($(this).is(":checked")==true){
+                var val = $(this).val().split("-")[0];
+                ids.push(parseInt(val));
+            }
+        });
+        if(ids.length===0){
+            $('#edits').prop('disabled', true);
+        }else{
+            $('#edits').prop('disabled', false);
+        }
     }
     $(document).ready(function () {
+        $('#edits').prop('disabled', true);
         $("#query").click(function () {
             window.location.href = '/admin/payment?email=' + $("#email").val() + '&type=' + $("#payType").val();
         });
