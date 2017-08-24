@@ -7,6 +7,7 @@
             付款记录
             <small>User Payment</small>
             {$users2}
+            {$users}
         </h1>
     </section>
 
