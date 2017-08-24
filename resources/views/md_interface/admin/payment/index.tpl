@@ -79,15 +79,17 @@
     function doList(){
         $("#selectIds").empty();
         var htmlText = "<p>已经选中:<br>";
-        var ids = "";
-        var names = "";
+        var ids = "<p>ID:";
+        var names = "<p>用户名:";
         $(".userList").each(function () {
             if($(this).is(":checked")==true){
                 var val = $(this).val().split("-");
-                ids += ("<span>" + val[0] + "</span>");
-                names += ("<span>" + val[1] + "</span>");
+                ids += ("<span>&nbsp;" + val[0] + "&nbsp;</span>");
+                names += ("<span>&nbsp;" + val[1] + "&nbsp;</span>");
             }
         });
+        ids += "</p>";
+        names += "</p>";
         htmlText += ids + "<br>" + names + "</p>";
         $("#selectIds").append(htmlText);
     }
