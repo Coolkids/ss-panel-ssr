@@ -140,38 +140,30 @@ class UserController extends AdminController
         if (isset($request->getQueryParams()["page"])) {
             $pageNum = $request->getQueryParams()["page"];
         }
-        $email = "";
+        $email = null;
         if (isset($request->getQueryParams()["email"])) {
             $email = $request->getQueryParams()["email"];
+            if($email==""){
+                $email = null;
+            }
         }
         $type = "-1";
         if (isset($request->getQueryParams()["type"])) {
             $type = $request->getQueryParams()["type"];
         }
 
-        $pageIndex = ($pageNum-1)*30;
-        $sql = "SELECT a.* FROM `user` as a LEFT JOIN `user_payment` as b on a.id=b.id where a.email like '%" . $email ."%' ";
-        if($type == "-1"){
-
-        }elseif ($type == "0"){
-            $sql = $sql . " and (month(b.payment_date)<>month(now()) or b.payment_date is null)";
-        }elseif($type == "1"){
-            $sql = $sql . " and month(b.payment_date)=month(now()) ";
+        $users = null;
+        if($email != null){
+            $users = User::where('email', 'like', '%' . $email . '%')->paginate(30, ['*'], 'page', $pageNum);
+        }else{
+            $users = User::paginate(30, ['*'], 'page', $pageNum);
         }
-        $sql = $sql . " limit ". $pageIndex .",30";
-
-        $users2 = User::hydrateRaw($sql);
-
-
-        $users = User::paginate(30, ['*'], 'page', $pageNum);
 
         $users->setPath('/admin/payment');
         return $this->view()
             ->assign('users', $users)
             ->assign('email', $email)
             ->assign('type', $type)
-            ->assign('sql', $sql)
-            ->assign('users2', $users2)
             ->display('admin/payment/index.tpl');
     }
 

@@ -246,6 +246,21 @@ class User extends Model
         return substr($payment->payment_date,0,10);
     }
 
+    public function lastpayment2()
+    {
+        $payment = UserPayment::find($this->attributes['id']);
+        if($payment==null){
+            return false;
+        }
+        $dat = substr($payment->payment_date,0,7);
+
+        if($dat == date('Y-m')) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function lastpayment()
     {
         $payment = UserPayment::find($this->attributes['id']);

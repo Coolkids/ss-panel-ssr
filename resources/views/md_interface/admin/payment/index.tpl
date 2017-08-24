@@ -4,10 +4,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            付款记录{json_encode($users)}
+            付款记录
             <small>User Payment</small>
-            {$users2}
-
         </h1>
     </section>
 
@@ -50,6 +48,7 @@
                                 <th>操作</th>
                             </tr>
                             {foreach $users as $user}
+                                {if $type==0&&{$user->lastpayment2()}}
                                 <tr>
                                     <td><input type="checkbox" class="userList" id="{$user->id}" value="{$user->id}-{$user->user_name}" onclick="doList()"></td>
                                     <td>{$user->id}</td>
@@ -67,6 +66,7 @@
                                            href="/admin/user/{$user->id}/delete">删除用户</a>
                                     </td>
                                 </tr>
+                                {/if}
                             {/foreach}
                         </table>
                     </div><!-- /.box-body -->
