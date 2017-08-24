@@ -33,8 +33,8 @@ class UserController extends AdminController
 
         $echartData = User::hydrateRaw("select user_name as `name`, ROUND((u+d)/(1024*1024), 2) as `value` from `user`");
 
+        $users->setPath('/admin/user');
         return $this->view()
-            ->setPath('/admin/user')
             ->assign('users', $users)
             ->assign('email', $email)
             ->assign('echartData', $echartData)
@@ -162,8 +162,8 @@ class UserController extends AdminController
 
         $users = User::hydrateRaw($sql, [$email]);
 
-        $users->setPath('/admin/payment');
         return $this->view()
+            ->setPath('/admin/payment')
             ->assign('users', $users)
             ->assign('email', $email)
             ->assign('type', $type)
