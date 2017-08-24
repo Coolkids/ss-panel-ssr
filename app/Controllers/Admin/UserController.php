@@ -162,7 +162,7 @@ class UserController extends AdminController
             if($type==null){
                 $users = User::paginate(30, ['*'], 'page', $pageNum);
             }else if($type=="1"){
-                $users = User::hydrateRaw("SELECT a.* FROM `user` as a LEFT JOIN `user_payment` as b on a.id=b.id where a.email like '%?%' and month(b.payment_date)=month(now())", [$email]) -> paginate(30, ['*'], 'page', $pageNum);
+                $users = User::hydrateRaw("SELECT a.* FROM `user` as a LEFT JOIN `user_payment` as b on a.id=b.id where a.email like '%?%' and month(b.payment_date)=month(now())", [$email]);
             }else if($type=="0"){
                 $users = User::hydrateRaw("SELECT a.* FROM `user` as a LEFT JOIN `user_payment` as b on a.id=b.id where a.email like '%?%' and (month(b.payment_date)<>month(now()) or b.payment_date is null )", [$email]) -> paginate(30, ['*'], 'page', $pageNum);
             }else{
