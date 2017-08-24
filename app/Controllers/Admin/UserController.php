@@ -160,8 +160,7 @@ class UserController extends AdminController
         }
         $sql = $sql . "limit ". $pageIndex .",30";
 
-        $users = User::hydrateRaw($sql, [$email]);
-        throw new Exception($users);
+        $users = User::select($sql, [$email]);
 
         $users->setPath('/admin/payment');
         return $this->view()
