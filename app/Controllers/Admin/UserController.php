@@ -158,11 +158,11 @@ class UserController extends AdminController
         }elseif($type == "1"){
             $sql = $sql . " and month(b.payment_date)=month(now()) ";
         }
-        $sql = $sql . "limit ". $pageIndex .",30";
+        //$sql = $sql . " limit ". $pageIndex .",30";
 
         $users = User::hydrateRaw($sql, [$email]);
-        $users = array_map('get_object_vars', $users);
-        //$users->setPath('/admin/payment');
+        //$users = array_map('get_object_vars', $users);
+        $users->setPath('/admin/payment');
         return $this->view()
             ->assign('users', $users)
             ->assign('email', $email)
