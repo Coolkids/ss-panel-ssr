@@ -77,7 +77,7 @@
 
 <script>
     function doList(){
-        $("#selectIds").removeAll();
+        $("#selectIds").empty();
         var htmlText = "<p>";
         $(".userList").each(function () {
             if($(this).is(":checked")==true){
