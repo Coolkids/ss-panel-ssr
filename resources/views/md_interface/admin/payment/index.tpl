@@ -48,7 +48,7 @@
                                 <th>操作</th>
                             </tr>
                             {foreach $users as $user}
-                                {if ($type==1&&$user->lastpayment2())||($type==-1)}
+                                {if ($type==1&&$user->lastpayment2()==true)||($type==0&&$user->lastpayment2()==false)||($type==-1)}
                                 <tr>
                                     <td><input type="checkbox" class="userList" id="{$user->id}" value="{$user->id}-{$user->user_name}" onclick="doList()"></td>
                                     <td>{$user->id}</td>
