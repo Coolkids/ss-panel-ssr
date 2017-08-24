@@ -3,7 +3,6 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\AdminController;
-use App\Models\TrafficLog;
 use App\Models\User;
 use App\Models\UserPayment;
 use App\Utils\Hash;
@@ -214,7 +213,7 @@ class UserController extends AdminController
 
         $userpayment->save();
 
-        return $this->paymentIndex($request, $response, $args);
+        return $this->redirect($response, "/admin/payment");
     }
 
     public function paymentClean($request, $response, $args)
