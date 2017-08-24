@@ -78,13 +78,17 @@
 <script>
     function doList(){
         $("#selectIds").empty();
-        var htmlText = "<p>";
+        var htmlText = "<p>已经选中:<br>";
+        var ids = "";
+        var names = "";
         $(".userList").each(function () {
             if($(this).is(":checked")==true){
-                htmlText += ("<span>" + $(this).val() + "</span>");
+                var val = $(this).val().split("-");
+                ids += ("<span>" + val[0] + "</span>");
+                names += ("<span>" + val[1] + "</span>");
             }
         });
-        htmlText += "</p>";
+        htmlText += ids + "<br>" + names + "</p>";
         $("#selectIds").append(htmlText);
     }
     $(document).ready(function () {
