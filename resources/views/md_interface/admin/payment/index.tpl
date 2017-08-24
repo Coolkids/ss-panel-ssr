@@ -23,7 +23,7 @@
                             <div class="col-xs-6 form-inline pagination">
                                 <div class="form-group">
                                     <label for="payType" class="control-label">付款状态</label>
-                                    <select id="payType" class="form-control" value="{$type}">
+                                    <select id="payType" class="form-control" value="{$user2}">
                                         <option value="-1">全部</option>
                                         <option value="1">已付</option>
                                         <option value="0">未付</option>

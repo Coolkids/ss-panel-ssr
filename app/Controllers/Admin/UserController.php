@@ -160,17 +160,18 @@ class UserController extends AdminController
         }
         $sql = $sql . " limit ". $pageIndex .",30";
 
-        $users = User::hydrateRaw($sql);
-        $users = array_map('get_object_vars', $users);
-        /*if(count($users)==0){
-            $users = User::paginate(30, ['*'], 'page', $pageNum);
-        }*/
+        $users2 = User::hydrateRaw($sql);
+
+
+        $users = User::paginate(30, ['*'], 'page', $pageNum);
+
         $users->setPath('/admin/payment');
         return $this->view()
             ->assign('users', $users)
             ->assign('email', $email)
             ->assign('type', $type)
             ->assign('sql', $sql)
+            ->assign('users2', $users2)
             ->display('admin/payment/index.tpl');
     }
 
