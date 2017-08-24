@@ -58,16 +58,16 @@
                                 </tr>
                             {/foreach}
                         </table>
-                        <div class="row">
-                            <div class="col-xs-6" id="selectIds">
-
-                            </div>
-                            <div class="col-xs-6">
-                                <button class="btn btn-info" id="edits">查询</button>
-                            </div>
-                        </div>
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
+                <div class="row">
+                    <div class="col-xs-6" id="selectIds">
+
+                    </div>
+                    <div class="col-xs-6">
+                        <button class="btn btn-info" id="edits">查询</button>
+                    </div>
+                </div>
             </div>
         </div>
 
