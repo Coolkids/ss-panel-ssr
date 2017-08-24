@@ -88,12 +88,7 @@
         $("#userListAll").click(function () {
             var isCheck = $(this).is(":checked");
             $(".userList").each(function () {
-                if(isCheck){
-                    $(this).trigger("click")
-                }else {
-                    $(this).removeAttr("checked");
-                }
-
+                $(this).attr("checked", isCheck);
             })
         });
         $(".pagination").addClass("pagination-sm");
