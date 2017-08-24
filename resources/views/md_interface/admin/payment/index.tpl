@@ -80,7 +80,7 @@
         $("#selectIds").removeAll();
         var htmlText = "<p>";
         $(".userList").each(function () {
-            if($(this).is(":checked")){
+            if($(this).is(":checked")==true){
                 htmlText += ("<span>" + $(this).value() + "</span>");
             }
         });
