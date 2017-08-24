@@ -76,6 +76,16 @@
 
 
 <script>
+    function doList(){
+        var htmlText = "<p>";
+        $(".userList").each(function () {
+            if($(this).is(":checked")){
+                htmlText += ("<span>" + $(this).value() + "</span>");
+            }
+        });
+        htmlText += "</p>";
+        $("#selectIds").html(htmlText);
+    }
     $(document).ready(function () {
         $("#query").click(function () {
             window.location.href = '/admin/payment?email=' + $("#email").val();
@@ -90,17 +100,11 @@
             $(".userList").each(function () {
                 $(this).prop("checked", isCheck);
             });
-            var htmlText = "<p>";
-            $(".userList").each(function () {
-                if($(this).is(":checked")){
-                    htmlText += "<span>" + $(this).value() + "; </span>" ;
-                }
-            });
-            htmlText += "</p>";
-            $("#selectIds").html(htmlText);
+            doList();
         });
         $(".pagination").addClass("pagination-sm");
     });
+
 </script>
 
 {include file='admin/footer.tpl'}
