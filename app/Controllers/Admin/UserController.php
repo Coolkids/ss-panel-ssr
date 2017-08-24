@@ -33,8 +33,8 @@ class UserController extends AdminController
 
         $echartData = User::hydrateRaw("select user_name as `name`, ROUND((u+d)/(1024*1024), 2) as `value` from `user`");
 
-        $users->setPath('/admin/user');
         return $this->view()
+            ->setPath('/admin/user')
             ->assign('users', $users)
             ->assign('email', $email)
             ->assign('echartData', $echartData)
@@ -154,7 +154,7 @@ class UserController extends AdminController
         if($type == "-1"){
 
         }elseif ($type == "0"){
-            $sql = $sql . " and (month(b.payment_date)<>month(now()) or b.payment_date is null )";
+            $sql = $sql . " and (month(b.payment_date)<>month(now()) or b.payment_date is null)";
         }elseif($type == "1"){
             $sql = $sql . " and month(b.payment_date)=month(now()) ";
         }
