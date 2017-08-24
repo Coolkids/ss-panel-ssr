@@ -42,7 +42,7 @@
                             </tr>
                             {foreach $users as $user}
                                 <tr>
-                                    <td><input type="checkbox" class="userList" id="{$user->id}" value="{$user->id}"></td>
+                                    <td><input type="checkbox" class="userList" id="{$user->id}" value="{$user->id}-{$user->user_name}"></td>
                                     <td>{$user->id}</td>
                                     <td>{$user->user_name}</td>
                                     <td>{$user->email}</td>
@@ -89,7 +89,15 @@
             var isCheck = $(this).is(":checked");
             $(".userList").each(function () {
                 $(this).prop("checked", isCheck);
-            })
+            });
+            var htmlText = "<p>";
+            $(".userList").each(function () {
+                if($(this).is(":checked")){
+                    htmlText += "<span>" + $(this).value() + "; </span>" ;
+                }
+            });
+            htmlText += "</p>";
+            $("#selectIds").html(htmlText);
         });
         $(".pagination").addClass("pagination-sm");
     });
