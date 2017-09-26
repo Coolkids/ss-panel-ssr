@@ -88,7 +88,7 @@
 	</main>
 <footer class="ui-footer">
 	<div class="container">
-		<p>SS-Panel-SSR</p>
+		<p>Panel</p>
 	</div>
 </footer>
 
