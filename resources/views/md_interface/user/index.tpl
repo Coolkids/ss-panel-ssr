@@ -394,7 +394,7 @@
                                                                         <td>状态</td>
                                                                         <td>{$node->status}</td>
                                                                     </tr>
-                                                                    <tr>
+                                                                    {*<tr>
                                                                         <td>延时</td>
                                                                         <td id="lag_{$node->id}">0ms</td>
                                                                     </tr>
@@ -408,7 +408,7 @@
                                                                             };
                                                                             setInterval("getLag_{$node->id}()", 15000);
                                                                         })
-                                                                    </script>
+                                                                    </script>*}
                                                                     <tr>
                                                                         <td>在线人数</td>
                                                                         <td>{$node->getOnlineUserCount()}</td>
