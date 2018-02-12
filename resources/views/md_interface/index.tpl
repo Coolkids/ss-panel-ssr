@@ -82,34 +82,17 @@
 						<div class="card">
 							<div class="card-main">
 								<div class="card-inner margin-bottom-no">
-									<p class="card-heading">邀请码/Invitation code</p>
+									<p class="card-heading">什么都没有哦</p>
 									<div class="card-table">
 										<div class="table-responsive">
-											<table class="table" title="A table within a card">
-												<thead>
-							                        <tr>
-							                            <th>###</th>
-							                            <th>邀请码 (点击邀请码进入注册页面)</th>
-							                            <th>状态</th>
-							                        </tr>
-						                        </thead>
-												<tbody>
-						                        {foreach $codes as $code}
-						                            <tr>
-						                                <td>{$code->id}</td>
-						                                <td><a href="/auth/register?code={$code->code}">{$code->code}</a></td>
-						                                <td>可用</td>
-						                            </tr>
-						                        {/foreach}
-						                        </tbody>
-											</table>
+											真的什么都没有!
 										</div>
 									</div>
 								</div>
 								<div class="card-action">
 									<div class="card-action-btn pull-right">
-										<a class="btn btn-flat waves-attach" href="javascript:void(0)"><span class="icon">chevron_left</span></a>
-										<a class="btn btn-flat waves-attach" href="javascript:void(0)"><span class="icon">chevron_right</span></a>
+										{*<a class="btn btn-flat waves-attach" href="javascript:void(0)"><span class="icon">chevron_left</span></a>*}
+										{*<a class="btn btn-flat waves-attach" href="javascript:void(0)"><span class="icon">chevron_right</span></a>*}
 									</div>
 								</div>
 							</div>
