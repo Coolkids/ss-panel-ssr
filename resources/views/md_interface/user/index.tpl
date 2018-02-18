@@ -721,6 +721,7 @@
                         <option value="salsa20">SALSA20</option>
                         <option value="chacha20">CHACHA20</option>
                         <option value="chacha20-ietf">CHACHA20-IETF</option>
+                        <option value="chacha20-ietf-poly1305">chacha20-ietf-poly1305</option>
                     </select>
                 </div>
             </div>
@@ -753,6 +754,11 @@
                         <option value="auth_aes128_md5">auth_aes128_md5</option>
                         <option value="auth_aes128_sha1">auth_aes128_sha1</option>
                         <option value="auth_chain_a">auth_chain_a</option>
+                        <option value="auth_chain_b">auth_chain_b</option>
+                        <option value="auth_chain_c">auth_chain_c</option>
+                        <option value="auth_chain_d">auth_chain_d</option>
+                        <option value="auth_chain_e">auth_chain_e</option>
+                        <option value="auth_chain_f">auth_chain_f</option>
                     </select>
                 </div>
             </div>

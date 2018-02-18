@@ -5,7 +5,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            用户编辑<small>Edit User</small>
+            用户编辑
+            <small>Edit User</small>
             <br><h4>用户名:{$user->user_name}&nbsp;用户ID:{$user->id} </h4>
         </h1>
     </section>
@@ -123,23 +124,24 @@
 
                                         <div class="col-sm-9">
                                             <select class="form-control" id="method">
-										        <option value="{$user->method}"> 当前:{$user->method}</option>
-										        <option value="aes-128-cfb">AES-128-CFB</option>
-						                        <option value="aes-192-cfb">AES-192-CFB</option>
-						                        <option value="aes-256-cfb">AES-256-CFB</option>
-						                        <option value="aes-128-ctr">AES-128-CTR</option>
-						                        <option value="aes-192-ctr">AES-192-CTR</option>
-						                        <option value="aes-256-ctr">AES-256-CTR</option>
-						                        <option value="bf-cfb">BF-CFB</option>
-						                        <option value="camellia-128-cfb">CAMELLIA-128-CFB</option>
-						                        <option value="camellia-192-cfb">CAMELLIA-192-CFB</option>
-						                        <option value="camellia-256-cfb">CAMELLIA-256-CFB</option>
-						                        <option value="rc4-md5">RC4-MD5</option>
-						                        <option value="rc4-md5-6">RC4-MD5-6</option>
-						                        <option value="salsa20">SALSA20</option>
-						                        <option value="chacha20">CHACHA20</option>
-						                        <option value="chacha20-ietf">CHACHA20-IETF</option>
-										    </select>
+                                                <option value="{$user->method}"> 当前:{$user->method}</option>
+                                                <option value="aes-128-cfb">AES-128-CFB</option>
+                                                <option value="aes-192-cfb">AES-192-CFB</option>
+                                                <option value="aes-256-cfb">AES-256-CFB</option>
+                                                <option value="aes-128-ctr">AES-128-CTR</option>
+                                                <option value="aes-192-ctr">AES-192-CTR</option>
+                                                <option value="aes-256-ctr">AES-256-CTR</option>
+                                                <option value="bf-cfb">BF-CFB</option>
+                                                <option value="camellia-128-cfb">CAMELLIA-128-CFB</option>
+                                                <option value="camellia-192-cfb">CAMELLIA-192-CFB</option>
+                                                <option value="camellia-256-cfb">CAMELLIA-256-CFB</option>
+                                                <option value="rc4-md5">RC4-MD5</option>
+                                                <option value="rc4-md5-6">RC4-MD5-6</option>
+                                                <option value="salsa20">SALSA20</option>
+                                                <option value="chacha20">CHACHA20</option>
+                                                <option value="chacha20-ietf">CHACHA20-IETF</option>
+                                                <option value="chacha20-ietf-poly1305">chacha20-ietf-poly1305</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -153,6 +155,11 @@
                                                 <option value="auth_aes128_md5">auth_aes128_md5</option>
                                                 <option value="auth_aes128_sha1">auth_aes128_sha1</option>
                                                 <option value="auth_chain_a">auth_chain_a</option>
+                                                <option value="auth_chain_b">auth_chain_b</option>
+                                                <option value="auth_chain_c">auth_chain_c</option>
+                                                <option value="auth_chain_d">auth_chain_d</option>
+                                                <option value="auth_chain_e">auth_chain_e</option>
+                                                <option value="auth_chain_f">auth_chain_f</option>
                                             </select>
                                         </div>
                                     </div>
